@@ -17,7 +17,7 @@ if ($servidorLocal) {
     define('HOST', 'localhost');
     define('USER', 'root');
     define('PASS', '');
-    define('DBNAME', 'algumacoisa');
+    define('DBNAME', 'cooperval');
 } else {
     define('HOST', '192.168.1.1');
     define('USER', 'root');

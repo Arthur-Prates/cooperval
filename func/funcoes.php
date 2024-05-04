@@ -173,7 +173,29 @@ function insert2Item($tabela, $dados, $novosDados1, $novosDados2)
     }
     $conn = null;
 }
+function insert3Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("INSERT INTO $tabela($dados) VALUES (?,?,?)");
+        $sqlLista->bindValue(1, $novosDados1, PDO::PARAM_STR);
+        $sqlLista->bindValue(2, $novosDados2, PDO::PARAM_STR);
+        $sqlLista->bindValue(3, $novosDados3, PDO::PARAM_STR);
+        $sqlLista->execute();
+        $conn->commit();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        }
+        return False;
 
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        $conn->rollback();
+        return ($e->getMessage());
+    }
+    $conn = null;
+}
 function insert4Item($tabela, $dados, $novosDados1, $novosDados2, $novosDados3, $novosDados4)
 {
     $conn = conectar();

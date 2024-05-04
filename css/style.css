@@ -2,3 +2,44 @@ body {
     margin: 0;
     padding: 0;
 }
+.fc-direction-ltr .fc-list-day-text, .fc-direction-rtl .fc-list-day-side-text {
+    float: left;
+    color: black !important;
+    text-decoration: none;
+    cursor: default;
+}
+
+.fc .fc-toolbar-title {
+    font-size: 1.75em;
+    margin: 0px;
+    cursor: default;
+}
+.fc .fc-col-header-cell-cushion {
+    display: inline-block;
+    padding: 2px 4px;
+    color: black;
+    text-decoration: none;
+}
+.fc .fc-daygrid-day-number {
+    padding: 4px;
+    position: relative;
+    z-index: 4;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.fc .fc-daygrid-day-number:hover {
+    text-decoration: underline;
+}
+.fc-daygrid-dot-event .fc-event-title {
+    flex-grow: 1;
+    flex-shrink: 1;
+    font-weight: 700;
+    min-width: 0;
+    overflow: hidden;
+    color: black;
+}
+.fc-direction-ltr .fc-daygrid-event .fc-event-time {
+    color: black;
+    margin-right: 3px;
+}

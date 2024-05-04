@@ -61,3 +61,14 @@ body {
     background-color: #1E2B37 !important;
     color: white !important;
 }
+
+
+/*///////////////////////////////////////////////////////////////////*/
+.verdeCoop{
+    background: #048149;
+    color: #ffffff;
+}
+
+.pointerCursor{
+    cursor: pointer;
+}

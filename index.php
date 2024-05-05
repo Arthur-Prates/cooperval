@@ -19,12 +19,49 @@ include_once("func/funcoes.php");
           href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.0.96/css/materialdesignicons.min.css">
 </head>
 
-<body>
-<div id="show">
-    <?php
-    include_once('listarCalendario.php')
-    ?>
+<body class="bodyLogin">
+
+<div class="login-box">
+    <h2 class="fontee">LOGIN <span class="mdi mdi-login"></span></h2>
+    <form method="post" name="frmLogin" id="frmLogin">
+        <div class="user-box">
+            <input type="email" name="email" id="email" autocomplete="off" required="required">
+            <label>Email <span class="mdi mdi-email"></span></label>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-11">
+                <div class="user-box">
+                    <input type="password" name="senha" id="senha" autocomplete="off" required="required">
+                    <label>Senha <span class="mdi mdi-key"></span></label>
+                </div>
+            </div>
+            <div class="col-1">
+                <button id="iconeOlho" type="button"
+                        style="background: transparent; border: transparent; box-shadow: transparent"
+                        class="mdi mdi-eye sem_hover" onclick="mostrarsenha();"></button>
+            </div>
+        </div>
+        <div class="erroBonito p-1 text-center" role="alert" id="alertlog" style="display: none;">
+        </div>
+        <button style="background: transparent; border: transparent;" class="hoverrr" onclick="fazerLogin();"
+                type="button">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            LOGIN
+        </button>
+    </form>
+    <br>
+    <div class="text-center text-white">
+        <?php
+        date_default_timezone_set('America/Sao_Paulo');
+        echo date('H:i:s');
+        ?>
+    </div>
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

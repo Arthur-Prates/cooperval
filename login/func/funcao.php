@@ -31,3 +31,11 @@ function verificarSenhaCriptografada($campos, $tabela, $campoBdEmail, $campoEmai
         $conn = null;
     }
 }
+
+function criarSenhaHash($senha, $valorCost = '12')
+{
+    $options = [
+        'cost' => $valorCost,
+    ];
+    return password_hash($senha, PASSWORD_BCRYPT, $options);
+}

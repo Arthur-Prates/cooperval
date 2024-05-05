@@ -22,6 +22,18 @@ $controle = filter_input(INPUT_POST, 'controle', FILTER_SANITIZE_STRING);
 
 if (!empty($controle) && isset($controle)) {
     switch ($controle) {
+        case 'listarAdm':
+            include_once 'listarAdm.php';
+            break;
+        case 'listarAluno':
+            include_once 'listarAluno.php';
+            break;
+        case 'listarCurso':
+            include_once 'listarCurso.php';
+            break;
+        case 'listarTurma':
+            include_once 'listarTurma.php';
+            break;
         case 'listarCalendario':
             include_once('listarCalendario.php');
             break;

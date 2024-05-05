@@ -12,7 +12,7 @@ function listarTabela($campos, $tabela)
         if ($sqlListaTabelas->rowCount() > 0) {
             return $sqlListaTabelas->fetchAll(PDO::FETCH_OBJ);
         }
-        return False;
+        return false;
     } catch (PDOException $e) {
         echo 'Exception -> ';
         return ($e->getMessage());

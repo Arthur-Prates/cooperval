@@ -59,16 +59,16 @@
 </div>
 
 
-<!-- Modal Add Evento-->
+<!-- Modal Edit Evento-->
 <div class="modal fade" id="editarEvento17" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background: #1E2B37;color: white">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Novo Evento</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Evento</h1>
                 <button type="button" class="btn-close text-light" onclick="window.location.reload()" aria-label="Close"
                         style="color: white !important; background-color: #2c3e50"></button>
             </div>
-            <form method="post" name="frmEditEvento" id="frmAddEvento">
+            <form method="post" name="frmEditEvento" id="frmEditEvento">
                 <div class="modal-body">
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="titulo">Editar</span>
@@ -106,8 +106,8 @@
         </div>
     </div>
 </div>
-<script>
 
+<script>
     document.addEventListener('DOMContentLoaded', function () {
         const calendarEl = document.getElementById('calendar')
         const calendar = new FullCalendar.Calendar(calendarEl, {
@@ -151,13 +151,14 @@
                     $dataFinal = $item->dataEnd;
                     $cor = $item->cor;
                     echo "
-    {
+                {
                     title: '$titulo',
                     start: '$dataInicio',
                     end: '$dataFinal',
                     backgroundColor: '$cor',
                     borderColor: '$cor',
-                  url:'index.php?editarItem=$id' 
+                    id:'$id' 
+                    
                 },";
                 }
 
@@ -166,6 +167,8 @@
 
             ],
             dateClick: function (info) {
+                console.log('<?php echo $id?>')
+                abrirModalJsAddEvento('editarEvento17','A','btnEditEvento','editEvento','frmEditEvento')
                 console.log('Clicked on: ' + info.dateStr); //aqui ele te passa a data q vc clicou
                 console.log('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY); //coodernadas do mouse
                 console.log('Current view: ' + info.view.type); // tipo de calendário
@@ -177,4 +180,4 @@
 
 </script>
 
-<script src="./js/controle.js"></script>
+<!--<script src="./js/controle.js"></script>-->

@@ -1,10 +1,15 @@
+<div class="d-flex justify-content-between align-items-center">
+    <p class="fs-3">#Curso(s)</p>
+    <button class="btn btn-sm btn-secondary">Cadastrar</button>
+</div>
+
 <table class="table">
     <thead>
     <tr>
         <th scope="col" width="5%">#</th>
         <th scope="col" width="35%">Nome</th>
-        <th scope="col" width="45%">Local do curso</th>
-        <th scope="col" width="15%">Ações</th>
+        <th scope="col" width="40%">Local do curso</th>
+        <th scope="col" width="20%">Ações</th>
     </tr>
     </thead>
     <tbody>
@@ -23,9 +28,9 @@
                 <td><?php echo $nome ?></td>
                 <td><?php echo $local ?></td>
                 <td>
-                    <button>Ativar</button>
-                    <button>Alterar</button>
-                    <button>Excluir</button>
+                    <button class="btn btn-success">Ativar</button>
+                    <button class="btn btn-primary">Alterar</button>
+                    <button class="btn btn-danger">Desativar</button>
                 </td>
             </tr>
             <?php

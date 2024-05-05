@@ -1,3 +1,8 @@
+<div class="d-flex justify-content-between align-items-center">
+    <p class="fs-3">#Turma(s)</p>
+    <button class="btn btn-sm btn-secondary">Cadastrar</button>
+</div>
+
 <table class="table">
     <thead>
     <tr>
@@ -27,9 +32,9 @@
                 <td><?php echo $email ?></td>
                 <td><?php echo $nascimento ?></td>
                 <td>
-                    <button>Ativar</button>
-                    <button>Alterar</button>
-                    <button>Excluir</button>
+                    <button class="btn btn-success">Ativar</button>
+                    <button class="btn btn-primary">Alterar</button>
+                    <button class="btn btn-danger">Desativar</button>
                 </td>
             </tr>
             <?php

@@ -14,7 +14,7 @@ var design = anime({
 });
 
 function anime(param) {
-    
+
 }
 
 anime({
@@ -71,7 +71,6 @@ function fazerLogin() {
     } else {
         alertlog.style.display = "none";
     }
-    mostrarProcessando();
     fetch("login.php", {
         method: "POST",
         headers: {
@@ -82,31 +81,42 @@ function fazerLogin() {
             encodeURIComponent(email) +
             "&senha=" +
             encodeURIComponent(senha),
-
     })
         .then((response) => response.json())
         .then((data) => {
+            console.log(data)
             if (data.success) {
+                // mostrarProcessando();
                 setTimeout(function () {
-                    // window.location.href = "adm.php";
+                    window.location.href = "adm.php";
                 }, 2000);
-                // alert(data.message);
-                alertlog.classList.remove("erroBonito");
-                alertlog.classList.add("acertoBonito");
-                alertlog.innerHTML = data.message;
-                alertlog.style.display = "block";
+                // // alert(data.message);
+                // alertlog.classList.remove("erroBonito");
+                // alertlog.classList.add("acertoBonito");
+                // alertlog.innerHTML = data.message;
+                // alertlog.style.display = "block";
             } else {
                 alertlog.style.display = "block";
                 alertlog.innerHTML = data.message;
             }
             esconderProcessando();
         })
-        .catch((error) => {
-            console.error("Erro na requisição", error);
-        });
+        // .catch((error) => {
+        //     console.error("Erro na requisição", error);
+        // });
 }
 // FUNCAO DE LOADING
 function mostrarProcessando() {
+    var divFundoEscuro = document.createElement('div');
+    divFundoEscuro.id = 'fundoEscuro';
+    divFundoEscuro.style.position = 'fixed';
+    divFundoEscuro.style.top = '0';
+    divFundoEscuro.style.left = '0';
+    divFundoEscuro.style.width = '100%';
+    divFundoEscuro.style.height = '100%';
+    divFundoEscuro.style.backgroundColor = 'rgba(0,0,0,0.7)';
+    document.body.appendChild(divFundoEscuro);
+
     var divProcessando = document.createElement("div");
     divProcessando.id = "processandoDiv";
     divProcessando.style.position = "fixed";

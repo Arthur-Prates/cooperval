@@ -1,6 +1,9 @@
 <div class="d-flex justify-content-between align-items-center">
     <p class="fs-3">#Administrador(es)</p>
-    <button class="btn btn-sm btn-secondary" onclick="abrirModalJsAdm('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','cadAdm','A','btnCadAdm','addAdm','frmCadAdm')">Cadastrar</button>
+    <button class="btn btn-sm btn-secondary"
+            onclick="abrirModalJsAdm('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','cadAdm','A','btnCadAdm','addAdm','frmCadAdm')">
+        Cadastrar
+    </button>
 </div>
 
 <table class="table">
@@ -18,10 +21,11 @@
     <?php
     $cont = 1;
     $adm = listarTabela('*', 'adm');
-    if ($adm !== false){
+    if ($adm !== false) {
         foreach ($adm as $admItem) {
             $id = $admItem->idadm;
             $nome = $admItem->nome;
+            $sobrenome = $admItem->sobrenome;
             $email = $admItem->email;
             $nascimento = $admItem->nascimento;
             $celular = $admItem->celular;
@@ -29,23 +33,29 @@
             ?>
             <tr>
                 <th scope="row"><?php echo $cont ?></th>
-                <td><?php echo $nome ?></td>
+                <td><?php echo $nome . ' ' . $sobrenome; ?></td>
                 <td><?php echo $email ?></td>
                 <td><?php echo $nascimento ?></td>
                 <td><?php echo $celular ?></td>
                 <td>
                     <button class="btn btn-success btn-sm">Ver mais</button>
-                    <button class="btn btn-primary btn-sm" onclick="abrirModalJsAdm('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','editAdm','A','btnEditAdm','editAdm','frmEditAdm')">Alterar</button>
-                    <button class="btn btn-danger btn-sm" onclick="abrirModalJsAdm('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','deleteAdm','A','btnDeleteAdm','deleteAdm','frmDeleteAdm')">Deletar</button>
+                    <button class="btn btn-primary btn-sm"
+                            onclick="abrirModalJsAdm('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','editAdm','A','btnEditAdm','editAdm','frmEditAdm')">
+                        Alterar
+                    </button>
+                    <button class="btn btn-danger btn-sm"
+                            onclick="abrirModalJsAdm('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','deleteAdm','A','btnDeleteAdm','deleteAdm','frmDeleteAdm')">
+                        Deletar
+                    </button>
                 </td>
             </tr>
             <?php
             ++$cont;
         }
-    }else{
-    ?>
+    } else {
+        ?>
         <th colspan="5" class="fs-5 text-center">NENHUM ADMINISTRADOR CADASTRADO!</th>
-    <?php
+        <?php
     }
     ?>
     </tbody>

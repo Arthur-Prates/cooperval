@@ -27,7 +27,7 @@ function carregarConteudo(controle) {
 //
 //
 
-function redireciona(page){
+function redireciona(page) {
     window.location.href = page
 }
 
@@ -55,10 +55,10 @@ anime({
     translateY: [10, -150],
     direction: 'alternate',
     loop: true,
-    delay: function(el, i, l) {
+    delay: function (el, i, l) {
         return i * 100;
     },
-    endDelay: function(el, i, l) {
+    endDelay: function (el, i, l) {
         return (l - i) * 100;
     }
 });
@@ -73,8 +73,7 @@ function mostrarsenha() {
         inputPass.setAttribute('type', 'text');
         iconeOlho.classList.remove('mdi-eye');
         iconeOlho.classList.add('mdi-eye-off');
-    }
-    else {
+    } else {
         inputPass.setAttribute('type', 'password');
         iconeOlho.classList.remove('mdi-eye-off');
         iconeOlho.classList.add('mdi-eye');
@@ -134,10 +133,11 @@ function fazerLogin() {
             }
             // esconderProcessando();
         })
-    .catch((error) => {
-        console.error("Erro na requisição", error);
-    });
+        .catch((error) => {
+            console.error("Erro na requisição", error);
+        });
 }
+
 // FUNCAO DE LOADING
 function mostrarProcessando() {
     var divFundoEscuro = document.createElement('div');
@@ -159,6 +159,7 @@ function mostrarProcessando() {
     divProcessando.innerHTML = '<img src="./img/loadin.gif" width="150px" alt="Processando..." title="Processando...">';
     document.body.appendChild(divProcessando);
 }
+
 // FUNCAO DE ESCONDER O LOADING
 function esconderProcessando() {
     var divProcessando = document.getElementById("processandoDiv");
@@ -214,6 +215,7 @@ function abrirModalJsAddEvento(nomeModal, abrirModal = 'A', botao, addEditDel, f
     }
 
 }
+
 function abrirModalJsEditEvento(nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
     const formDados = document.getElementById(`${formulario}`)
 
@@ -308,3 +310,214 @@ function abrirModalJsCurso(nomeModal, abrirModal = 'A', botao, addEditDel, formu
     }
 
 }
+
+function abrirModalJsAluno(idId, inId, idNome, inNome, idSobrenome, inSobrenome, idTurma, inTurma, idEmail, inEmail, idCelular, inCelular, idCpf, inCpf, idData, inData, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+    const formDados = document.getElementById(`${formulario}`)
+
+    var botoes = document.getElementById(`${botao}`);
+    const ModalInstacia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
+    if (abrirModal === 'A') {
+        ModalInstacia.show();
+
+        const inputid = document.getElementById(`${idId}`);
+        if (inId !== 'nao') {
+            inputid.value = idId;
+        }
+        const nome = document.getElementById(`${inNome}`);
+        if (inNome !== 'nao') {
+            nome.value = idNome;
+        }
+        const sobrenome = document.getElementById(`${inSobrenome}`);
+        if (inSobrenome !== 'nao') {
+            sobrenome.value = idSobrenome;
+        }
+        const turma = document.getElementById(`${inTurma}`);
+        if (inTurma !== 'nao') {
+            turma.value = idTurma;
+        }
+        const email = document.getElementById(`${inEmail}`);
+        if (inEmail !== 'nao') {
+            email.value = idEmail;
+        }
+        const celular = document.getElementById(`${inCelular}`);
+        if (inCelular !== 'nao') {
+            celular.value = idCelular;
+        }
+        const cpf = document.getElementById(`${inCpf}`);
+        if (inCpf !== 'nao') {
+            cpf.value = idCpf;
+        }
+        const data = document.getElementById(`${inData}`);
+        if (inData !== 'nao') {
+            data.value = idData;
+        }
+
+
+        const submitHandler = function (event) {
+            event.preventDefault();
+
+            botoes.disabled = true;
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            formData.append('controle', `${addEditDel}`)
+
+            fetch('controle.php', {
+                method: 'POST', body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.success) {
+                        window.location.reload()
+                    }
+                    ModalInstacia.hide();
+                })
+            // .catch(error => {
+            //
+            //     botoes.disabled = false;
+            //     ModalInstacia.hide();
+            //     console.error('Erro na requisição:', error);
+            // });
+
+
+        }
+        formDados.addEventListener('submit', submitHandler);
+
+
+    } else {
+        ModalInstacia.hide();
+    }
+
+}
+
+
+function abrirModalJsAdm(idId, inId, idNome, inNome, idSobrenome, inSobrenome, idEmail, inEmail, idCelular, inCelular, idCpf, inCpf, idData, inData, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+    const formDados = document.getElementById(`${formulario}`)
+
+    var botoes = document.getElementById(`${botao}`);
+    const ModalInstacia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
+    if (abrirModal === 'A') {
+        ModalInstacia.show();
+
+        const inputid = document.getElementById(`${idId}`);
+        if (inId !== 'nao') {
+            inputid.value = idId;
+        }
+        const nome = document.getElementById(`${inNome}`);
+        if (inNome !== 'nao') {
+            nome.value = idNome;
+        }
+        const sobrenome = document.getElementById(`${inSobrenome}`);
+        if (inSobrenome !== 'nao') {
+            sobrenome.value = idSobrenome;
+        }
+        const email = document.getElementById(`${inEmail}`);
+        if (inEmail !== 'nao') {
+            email.value = idEmail;
+        }
+        const celular = document.getElementById(`${inCelular}`);
+        if (inCelular !== 'nao') {
+            celular.value = idCelular;
+        }
+        const cpf = document.getElementById(`${inCpf}`);
+        if (inCpf !== 'nao') {
+            cpf.value = idCpf;
+        }
+        const data = document.getElementById(`${inData}`);
+        if (inData !== 'nao') {
+            data.value = idData;
+        }
+
+
+        const submitHandler = function (event) {
+            event.preventDefault();
+
+            botoes.disabled = true;
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            formData.append('controle', `${addEditDel}`)
+
+            fetch('controle.php', {
+                method: 'POST', body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+
+                    if (data.success) {
+                        window.location.reload()
+                    }
+                    ModalInstacia.hide();
+                })
+            // .catch(error => {
+            //
+            //     botoes.disabled = false;
+            //     ModalInstacia.hide();
+            //     console.error('Erro na requisição:', error);
+            // });
+
+
+        }
+        formDados.addEventListener('submit', submitHandler);
+
+
+    } else {
+        ModalInstacia.hide();
+    }
+
+}
+
+
+
+function abrirModalJsTurma(nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+    const formDados = document.getElementById(`${formulario}`)
+
+    var botoes = document.getElementById(`${botao}`);
+    const ModalInstacia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
+    if (abrirModal === 'A') {
+        ModalInstacia.show();
+
+        const submitHandler = function (event) {
+            event.preventDefault();
+
+            botoes.disabled = true;
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            formData.append('controle', `${addEditDel}`)
+
+            fetch('controle.php', {
+                method: 'POST', body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+
+                    if (data.success) {
+                        window.location.reload()
+                    }
+                    ModalInstacia.hide();
+                })
+                .catch(error => {
+
+                    botoes.disabled = false;
+                    ModalInstacia.hide();
+                    console.error('Erro na requisição:', error);
+                });
+
+
+        }
+        formDados.addEventListener('submit', submitHandler);
+
+
+    } else {
+        ModalInstacia.hide();
+    }
+
+}
+
+
+

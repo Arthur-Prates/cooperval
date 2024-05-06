@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between align-items-center">
     <p class="fs-3">#Turma(s)</p>
-    <button class="btn btn-sm btn-secondary">Cadastrar</button>
+    <button class="btn btn-sm btn-secondary" onclick="abrirModalJsTurma('cadTurma', abrirModal = 'A', 'btnCadTurma', 'addTurma', 'frmCadTurma')">Cadastrar</button>
 </div>
 
 <table class="table">
@@ -33,8 +33,8 @@
                 <td><?php echo $nascimento ?></td>
                 <td>
                     <button class="btn btn-success">Ativar</button>
-                    <button class="btn btn-primary">Alterar</button>
-                    <button class="btn btn-danger">Desativar</button>
+                    <button class="btn btn-primary" onclick="abrirModalJsTurma('editTurma', 'A', 'btnEditTurma', 'editTurma', 'frmEditTurma')">Alterar</button>
+                    <button class="btn btn-danger" onclick="abrirModalJsTurma('deleteTurma', 'A', 'btnDeleteTurma', 'deleteTurma', 'frmDeleteTurma')">Deletar</button>
                 </td>
             </tr>
             <?php

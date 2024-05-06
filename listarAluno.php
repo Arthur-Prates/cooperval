@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between align-items-center">
     <p class="fs-3">#Aluno(s)</p>
-    <button class="btn btn-sm btn-secondary">Cadastrar</button>
+    <button class="btn btn-sm btn-secondary" onclick="abrirModalJsAluno('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','cadAluno','A','btnCadAluno','addAluno','frmCadAluno')">Cadastrar</button>
 </div>
 
 <table class="table">
@@ -35,8 +35,8 @@
                 <td><?php echo $celular ?></td>
                 <td>
                     <button class="btn btn-success">Ver mais</button>
-                    <button class="btn btn-primary">Alterar</button>
-                    <button class="btn btn-danger">Desativar</button>
+                    <button class="btn btn-primary" onclick="abrirModalJsAluno('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','editAluno','A','btnEditAluno','editAluno','frmEditAluno')">Alterar</button>
+                    <button class="btn btn-danger" onclick="abrirModalJsAluno('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','deleteAluno','A','btnDeleteAluno','deleteAluno','frmDeleteAluno')">Deletar</button>
                 </td>
             </tr>
             <?php

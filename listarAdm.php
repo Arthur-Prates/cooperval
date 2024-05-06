@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between align-items-center">
     <p class="fs-3">#Administrador(es)</p>
-    <button class="btn btn-sm btn-secondary">Cadastrar</button>
+    <button class="btn btn-sm btn-secondary" onclick="abrirModalJsAdm('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','cadAdm','A','btnCadAdm','addAdm','frmCadAdm')">Cadastrar</button>
 </div>
 
 <table class="table">
@@ -35,8 +35,8 @@
                 <td><?php echo $celular ?></td>
                 <td>
                     <button class="btn btn-success">Ver mais</button>
-                    <button class="btn btn-primary">Alterar</button>
-                    <button class="btn btn-danger">Desativar</button>
+                    <button class="btn btn-primary" onclick="abrirModalJsAdm('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','editAdm','A','btnEditAdm','editAdm','frmEditAdm')">Alterar</button>
+                    <button class="btn btn-danger" onclick="abrirModalJsAdm('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','deleteAdm','A','btnDeleteAdm','deleteAdm','frmDeleteAdm')">Deletar</button>
                 </td>
             </tr>
             <?php

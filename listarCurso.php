@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between align-items-center">
     <p class="fs-3">#Curso(s)</p>
-    <button class="btn btn-sm btn-secondary">Cadastrar</button>
+    <button class="btn btn-sm btn-secondary" onclick="abrirModalJsCurso('cadCurso','A','btnCadCurso','addCurso','frmCadCurso')">Cadastrar</button>
 </div>
 
 <table class="table">
@@ -29,8 +29,8 @@
                 <td><?php echo $local ?></td>
                 <td>
                     <button class="btn btn-success">Ativar</button>
-                    <button class="btn btn-primary">Alterar</button>
-                    <button class="btn btn-danger">Desativar</button>
+                    <button class="btn btn-primary" onclick="abrirModalJsCurso('editCurso','A','btnEditCurso','editCurso','frmEditCurso')">Alterar</button>
+                    <button class="btn btn-danger" onclick="abrirModalJsCurso('deleteCurso','A','btnDeleteCurso','deleteCurso','frmDeleteCurso')">Deletar</button>
                 </td>
             </tr>
             <?php

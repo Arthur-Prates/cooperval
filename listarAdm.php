@@ -34,9 +34,9 @@
                 <td><?php echo $nascimento ?></td>
                 <td><?php echo $celular ?></td>
                 <td>
-                    <button class="btn btn-success">Ver mais</button>
-                    <button class="btn btn-primary" onclick="abrirModalJsAdm('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','editAdm','A','btnEditAdm','editAdm','frmEditAdm')">Alterar</button>
-                    <button class="btn btn-danger" onclick="abrirModalJsAdm('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','deleteAdm','A','btnDeleteAdm','deleteAdm','frmDeleteAdm')">Deletar</button>
+                    <button class="btn btn-success btn-sm">Ver mais</button>
+                    <button class="btn btn-primary btn-sm" onclick="abrirModalJsAdm('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','editAdm','A','btnEditAdm','editAdm','frmEditAdm')">Alterar</button>
+                    <button class="btn btn-danger btn-sm" onclick="abrirModalJsAdm('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','deleteAdm','A','btnDeleteAdm','deleteAdm','frmDeleteAdm')">Deletar</button>
                 </td>
             </tr>
             <?php

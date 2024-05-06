@@ -32,9 +32,9 @@
                 <td><?php echo $email ?></td>
                 <td><?php echo $nascimento ?></td>
                 <td>
-                    <button class="btn btn-success">Ativar</button>
-                    <button class="btn btn-primary" onclick="abrirModalJsTurma('editTurma', 'A', 'btnEditTurma', 'editTurma', 'frmEditTurma')">Alterar</button>
-                    <button class="btn btn-danger" onclick="abrirModalJsTurma('deleteTurma', 'A', 'btnDeleteTurma', 'deleteTurma', 'frmDeleteTurma')">Deletar</button>
+                    <button class="btn btn-success btn-sm">Ativar</button>
+                    <button class="btn btn-primary btn-sm" onclick="abrirModalJsTurma('editTurma', 'A', 'btnEditTurma', 'editTurma', 'frmEditTurma')">Alterar</button>
+                    <button class="btn btn-danger btn-sm" onclick="abrirModalJsTurma('deleteTurma', 'A', 'btnDeleteTurma', 'deleteTurma', 'frmDeleteTurma')">Deletar</button>
                 </td>
             </tr>
             <?php

@@ -34,9 +34,9 @@
                 <td><?php echo $nascimento ?></td>
                 <td><?php echo $celular ?></td>
                 <td>
-                    <button class="btn btn-success">Ver mais</button>
-                    <button class="btn btn-primary" onclick="abrirModalJsAluno('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','editAluno','A','btnEditAluno','editAluno','frmEditAluno')">Alterar</button>
-                    <button class="btn btn-danger" onclick="abrirModalJsAluno('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','deleteAluno','A','btnDeleteAluno','deleteAluno','frmDeleteAluno')">Deletar</button>
+                    <button class="btn btn-success btn-sm">Ver mais</button>
+                    <button class="btn btn-primary btn-sm" onclick="abrirModalJsAluno('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','editAluno','A','btnEditAluno','editAluno','frmEditAluno')">Alterar</button>
+                    <button class="btn btn-danger btn-sm" onclick="abrirModalJsAluno('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','deleteAluno','A','btnDeleteAluno','deleteAluno','frmDeleteAluno')">Deletar</button>
                 </td>
             </tr>
             <?php

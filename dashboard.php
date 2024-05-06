@@ -91,7 +91,7 @@ if ($_SESSION['idadm']) {
 <div class="modal fade" id="cadAluno" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-success text-white">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro de aluno</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -113,15 +113,15 @@ if ($_SESSION['idadm']) {
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-12">
-                            <label for="cursoAluno">Curso pretendido:</label>
-                            <select name="cursoAluno" id="cursoAluno">
+                            <label for="turmaDoAluno" class="label-control">Turma:</label>
+                            <select name="turmaDoAluno" id="turmaDoAluno" class="form-control">
                                 <?php
-                                $curso = listarTabela('*', 'curso');
+                                $curso = listarTabela('*', 'turma');
                                 foreach ($curso as $item) {
-                                    $idCurso = $item->idcurso;
-                                    $nome = $item->nomeCurso;
+                                    $idCurso = $item->idturma;
+                                    $nome = $item->nomeTurma;
 
                                     ?>
                                     <option value="<?php echo $idCurso ?>"><?php echo $nome ?></option>
@@ -132,10 +132,10 @@ if ($_SESSION['idadm']) {
                             </select>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-8">
                             <label for="cadEmailAluno" class="label-control">Email:</label>
-                            <input type="text" name="cadEmailAluno" id="cadEmailAluno" class="form-control"
+                            <input type="email" name="cadEmailAluno" id="cadEmailAluno" class="form-control"
                                    required="required">
                         </div>
                         <div class="col-4">
@@ -144,7 +144,7 @@ if ($_SESSION['idadm']) {
                                    required="required">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-6">
                             <label for="cadCpfAluno" class="label-control">Cpf:</label>
                             <input type="text" name="cadCpfAluno" id="cadCpfAluno" class="form-control"
@@ -159,7 +159,7 @@ if ($_SESSION['idadm']) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" id="btnCadAluno">Cadastrar</button>
+                    <button type="submit" class="btn btn-success" id="btnCadAluno">Cadastrar</button>
                 </div>
             </form>
         </div>
@@ -170,7 +170,7 @@ if ($_SESSION['idadm']) {
 <div class="modal fade" id="editAluno" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-primary text-white">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Edição de aluno</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -195,10 +195,29 @@ if ($_SESSION['idadm']) {
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <label for="turmaDoAluno" class="label-control">Turma:</label>
+                            <select name="turmaDoAluno" id="turmaDoAluno" class="form-control">
+                                <?php
+                                $curso = listarTabela('*', 'turma');
+                                foreach ($curso as $item) {
+                                    $idCurso = $item->idturma;
+                                    $nome = $item->nomeTurma;
+
+                                    ?>
+                                    <option value="<?php echo $idCurso ?>"><?php echo $nome ?></option>
+                                    <?php
+
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
                         <div class="col-8">
                             <label for="editEmailAluno" class="label-control">Email:</label>
-                            <input type="text" name="editEmailAluno" id="editEmailAluno" class="form-control"
+                            <input type="email" name="editEmailAluno" id="editEmailAluno" class="form-control"
                                    required="required">
                         </div>
                         <div class="col-4">
@@ -207,7 +226,7 @@ if ($_SESSION['idadm']) {
                                    required="required">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-6">
                             <label for="editCpfAluno" class="label-control">Cpf:</label>
                             <input type="text" name="editCpfAluno" id="editCpfAluno" class="form-control"
@@ -222,7 +241,7 @@ if ($_SESSION['idadm']) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" id="btnEditAluno">Alterar</button>
+                    <button type="submit" class="btn btn-primary" id="btnEditAluno">Alterar</button>
                 </div>
             </form>
         </div>
@@ -233,19 +252,19 @@ if ($_SESSION['idadm']) {
 <div class="modal fade" id="deleteAluno" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-danger text-white">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Deletar aluno</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="" method="post" name="frmEditAluno" id="frmEditAluno">
+            <form action="" method="post" name="frmDeleteAluno" id="frmDeleteAluno">
                 <div class="modal-body">
                     <div>
                         <input type="text" id="idDeleteAluno" name="idDeleteAluno">
                     </div>
                     <div class="">
-                        <p>Tem certeza que deseja deletar esse aluno?</p>
-                        <p>Realizar essa ação excluirá todos os registros desse aluno, não havendo possiblidade de
-                            recuperção!</p>
+                        <p class="fs-3"> Tem certeza que deseja deletar esse aluno?</p>
+                        <p><b>Realizar essa ação excluirá todos os registros desse aluno, não havendo possibilidade de
+                                recuperação!</b></p>
                     </div>
                     <div>
                         <input type="checkbox" name="confimacaoDeleteAluno" id="confimacaoDeleteAluno"
@@ -256,7 +275,7 @@ if ($_SESSION['idadm']) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-danger" id="btnDeleteAluno">Deletar</button>
+                    <button type="submit" class="btn btn-danger" id="btnDeleteAluno">Deletar</button>
                 </div>
             </form>
         </div>
@@ -268,7 +287,7 @@ if ($_SESSION['idadm']) {
 <div class="modal fade" id="cadAdm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-success text-white">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro de administrador</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -290,24 +309,24 @@ if ($_SESSION['idadm']) {
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-8">
                             <label for="cadEmailAdm" class="label-control">Email:</label>
-                            <input type="text" name="cadEmailAdm" id="cadEmailAdm" class="form-control"
+                            <input type="email" name="cadEmailAdm" id="cadEmailAdm" class="form-control"
                                    required="required">
                         </div>
                         <div class="col-4">
                             <label for="cadSenhaAdm" class="label-control">Senha:</label>
-                            <input type="text" name="editSenhaAdm" id="editSenhaAdm" class="form-control"
+                            <input type="text" name="cadSenhaAdm" id="cadSenhaAdm" class="form-control"
                                    required="required">
                         </div>
-                        <div class="col-12">
+                        <div class="col-12 mt-2">
                             <label for="cadCelularAdm" class="label-control">Celular:</label>
                             <input type="text" name="cadCelularAdm" id="cadCelularAdm" class="form-control"
                                    required="required">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-6">
                             <label for="cadCpfAdm" class="label-control">Cpf:</label>
                             <input type="text" name="cadCpfAdm" id="cadCpfAdm" class="form-control"
@@ -322,7 +341,7 @@ if ($_SESSION['idadm']) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" id="btnCadAdm">Cadastrar</button>
+                    <button type="submit" class="btn btn-success" id="btnCadAdm">Cadastrar</button>
                 </div>
             </form>
         </div>
@@ -333,7 +352,7 @@ if ($_SESSION['idadm']) {
 <div class="modal fade" id="editAdm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-primary text-white">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Edição de administrador</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -358,10 +377,10 @@ if ($_SESSION['idadm']) {
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-8">
                             <label for="editEmailAdm" class="label-control">Email:</label>
-                            <input type="text" name="editEmailAdm" id="editEmailAdm" class="form-control"
+                            <input type="email" name="editEmailAdm" id="editEmailAdm" class="form-control"
                                    required="required">
                         </div>
                         <div class="col-4">
@@ -369,13 +388,13 @@ if ($_SESSION['idadm']) {
                             <input type="text" name="editSenhaAdm" id="editSenhaAdm" class="form-control"
                                    required="required">
                         </div>
-                        <div class="col-12">
+                        <div class="col-12 mt-2">
                             <label for="editCelularAdm" class="label-control">Celular:</label>
                             <input type="text" name="editCelularAdm" id="editCelularAdm" class="form-control"
                                    required="required">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-6">
                             <label for="editCpfAdm" class="label-control">Cpf:</label>
                             <input type="text" name="editCpfAdm" id="editCpfAdm" class="form-control"
@@ -390,7 +409,7 @@ if ($_SESSION['idadm']) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" id="btnEditAdm">Alterar</button>
+                    <button type="submit" class="btn btn-primary" id="btnEditAdm">Alterar</button>
                 </div>
             </form>
         </div>
@@ -401,19 +420,19 @@ if ($_SESSION['idadm']) {
 <div class="modal fade" id="deleteAdm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-danger text-white">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Deletar administrador</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="" method="post" name="frmEditAdm" id="frmEditAdm">
+            <form action="" method="post" name="frmDeleteAdm" id="frmDeleteAdm">
                 <div class="modal-body">
                     <div>
                         <input type="text" id="idDeleteAdm" name="idDeleteAdm">
                     </div>
                     <div class="">
-                        <p>Tem certeza que deseja deletar esse administrador?</p>
-                        <p>Realizar essa ação excluirá todos os registros desse administrador, não havendo possiblidade
-                            de recuperção!</p>
+                        <p class="fs-3">Tem certeza que deseja deletar esse administrador?</p>
+                        <p><b>Realizar essa ação excluirá todos os registros desse administrador, não havendo possibilidade
+                                de recuperação!</b></p>
                     </div>
                     <div>
                         <input type="checkbox" name="confimacaoDeleteAdm" id="confimacaoDeleteAdm" required="required">
@@ -423,7 +442,7 @@ if ($_SESSION['idadm']) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-danger" id="btnDeleteAdm">Deletar</button>
+                    <button type="submit" class="btn btn-danger" id="btnDeleteAdm">Deletar</button>
                 </div>
             </form>
         </div>
@@ -434,7 +453,7 @@ if ($_SESSION['idadm']) {
 <div class="modal fade" id="cadCurso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-success text-white">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro de curso</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -445,7 +464,7 @@ if ($_SESSION['idadm']) {
                         <input type="text" name="cadNomeCurso" id="cadNomeCurso" required="required"
                                class="form-control">
                     </div>
-                    <div>
+                    <div class="mt-2">
                         <label for="cadLocalCurso" class="label-control">Local do curso:</label>
                         <input type="text" name="cadLocalCurso" id="cadLocalCurso" required="required"
                                class="form-control">
@@ -453,7 +472,7 @@ if ($_SESSION['idadm']) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-success" id="btnCadCurso">Cadastrar</button>
+                    <button type="submit" class="btn btn-success" id="btnCadCurso">Cadastrar</button>
                 </div>
             </form>
         </div>
@@ -464,7 +483,7 @@ if ($_SESSION['idadm']) {
 <div class="modal fade" id="editCurso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-primary text-white">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Edição de curso</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -476,7 +495,7 @@ if ($_SESSION['idadm']) {
                         <input type="text" name="editNomeCurso" id="editNomeCurso" required="required"
                                class="form-control">
                     </div>
-                    <div>
+                    <div class="mt-2">
                         <label for="editLocalCurso" class="label-control">Local do curso:</label>
                         <input type="text" name="editLocalCurso" id="editLocalCurso" required="required"
                                class="form-control">
@@ -485,7 +504,7 @@ if ($_SESSION['idadm']) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-success" id="btnEditCurso">Alterar</button>
+                    <button type="submit" class="btn btn-primary" id="btnEditCurso">Alterar</button>
                 </div>
             </form>
         </div>
@@ -496,7 +515,7 @@ if ($_SESSION['idadm']) {
 <div class="modal fade" id="deleteCurso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-danger text-white">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Deletar curso</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -506,9 +525,9 @@ if ($_SESSION['idadm']) {
                         <input type="text" id="idDeleteCurso" name="idDeleteCurso">
                     </div>
                     <div class="">
-                        <p>Tem certeza que deseja deletar esse curso?</p>
-                        <p>Realizar essa ação excluirá todos os registros desse curso, não havendo possiblidade de
-                            recuperção!</p>
+                        <p class="fs-3">Tem certeza que deseja deletar esse curso?</p>
+                        <p><b>Realizar essa ação excluirá todos os registros desse curso, não havendo possibilidade de
+                                recuperação!</b></p>
                     </div>
                     <div>
                         <input type="checkbox" name="confimacaoDeleteCurso" id="confimacaoDeleteCurso"
@@ -519,7 +538,7 @@ if ($_SESSION['idadm']) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-danger" id="btnDeleteDeletar">Deletar</button>
+                    <button type="submit" class="btn btn-danger" id="btnDeleteCurso">Deletar</button>
                 </div>
             </form>
         </div>
@@ -531,23 +550,23 @@ if ($_SESSION['idadm']) {
 <div class="modal fade" id="cadTurma" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-success text-white">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro de turma</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="" method="post" name="frmCadTurma" id="frmCadTurma">
                 <div class="modal-body">
-                    <div class="">
+                    <div >
                         <label for="cadNumeroTurma" class="label-control">Número da turma:</label>
                         <input type="text" name="cadNumeroTurma" id="cadNumeroTurma" required="required"
                                class="form-control">
                     </div>
-                    <div>
+                    <div class="mt-2">
                         <label for="cadNomeTurma" class="label-control">Nome da turma:</label>
                         <input type="text" name="cadNomeTurma" id="cadNomeTurma" required="required"
                                class="form-control">
                     </div>
-                    <div>
+                    <div class="mt-2">
                         <label for="cadCodigoTurma" class="label-control">Código da turma:</label>
                         <input type="text" name="cadCodigoTurma" id="cadCodigoTurma" required="required"
                                class="form-control">
@@ -556,7 +575,7 @@ if ($_SESSION['idadm']) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-success" id="btnCadTurma">Cadastrar</button>
+                    <button type="submit" class="btn btn-success" id="btnCadTurma">Cadastrar</button>
                 </div>
             </form>
         </div>
@@ -567,7 +586,7 @@ if ($_SESSION['idadm']) {
 <div class="modal fade" id="editTurma" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-primary text-white">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Edição de turma</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -578,12 +597,12 @@ if ($_SESSION['idadm']) {
                         <input type="text" name="editNumeroTurma" id="editNumeroTurma" required="required"
                                class="form-control">
                     </div>
-                    <div>
+                    <div class="mt-2">
                         <label for="editNomeTurma" class="label-control">Nome da turma:</label>
                         <input type="text" name="editNomeTurma" id="editNomeTurma" required="required"
                                class="form-control">
                     </div>
-                    <div>
+                    <div class="mt-2">
                         <label for="editCodigoTurma" class="label-control">Código da turma:</label>
                         <input type="text" name="editCodigoTurma" id="editCodigoTurma" required="required"
                                class="form-control">
@@ -592,7 +611,7 @@ if ($_SESSION['idadm']) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-success" id="btnEditTurma">Alterar</button>
+                    <button type="submit" class="btn btn-primary" id="btnEditTurma">Alterar</button>
                 </div>
             </form>
         </div>
@@ -603,19 +622,19 @@ if ($_SESSION['idadm']) {
 <div class="modal fade" id="deleteTurma" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-danger text-white">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Deletar turma</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="" method="post" name="frmEditTurma" id="frmEditTurma">
+            <form action="" method="post" name="frmDeleteTurma" id="frmDeleteTurma">
                 <div class="modal-body">
                     <div>
                         <input type="text" id="idDeleteTurma" name="idDeleteTurma">
                     </div>
                     <div class="">
-                        <p>Tem certeza que deseja deletar essa turma?</p>
-                        <p>Realizar essa ação excluirá todos os registros dessa turma, não havendo possiblidade de
-                            recuperção!</p>
+                        <p class="fs-3">Tem certeza que deseja deletar essa turma?</p>
+                        <p><b>Realizar essa ação excluirá todos os registros dessa turma, não havendo possibilidade de
+                                recuperação!</b></p>
                     </div>
                     <div>
                         <input type="checkbox" name="confimacaoDeleteCurso" id="confimacaoDeleteCurso"
@@ -626,7 +645,7 @@ if ($_SESSION['idadm']) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-danger" id="btnDeleteAdm">Deletar</button>
+                    <button type="submit" class="btn btn-danger" id="btnDeleteAdm">Deletar</button>
                 </div>
             </form>
         </div>

@@ -41,26 +41,26 @@ if ($_SESSION['idadm']) {
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Início</a>
                 </li>
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" href="#">Link</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item dropdown">-->
-<!--                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"-->
-<!--                       aria-expanded="false">-->
-<!--                        Dropdown-->
-<!--                    </a>-->
-<!--                    <ul class="dropdown-menu">-->
-<!--                        <li><a class="dropdown-item" href="#">Action</a></li>-->
-<!--                        <li><a class="dropdown-item" href="#">Another action</a></li>-->
-<!--                        <li>-->
-<!--                            <hr class="dropdown-divider">-->
-<!--                        </li>-->
-<!--                        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-<!--                    </ul>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>-->
-<!--                </li>-->
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link" href="#">Link</a>-->
+                <!--                </li>-->
+                <!--                <li class="nav-item dropdown">-->
+                <!--                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"-->
+                <!--                       aria-expanded="false">-->
+                <!--                        Dropdown-->
+                <!--                    </a>-->
+                <!--                    <ul class="dropdown-menu">-->
+                <!--                        <li><a class="dropdown-item" href="#">Action</a></li>-->
+                <!--                        <li><a class="dropdown-item" href="#">Another action</a></li>-->
+                <!--                        <li>-->
+                <!--                            <hr class="dropdown-divider">-->
+                <!--                        </li>-->
+                <!--                        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+                <!--                    </ul>-->
+                <!--                </li>-->
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>-->
+                <!--                </li>-->
             </ul>
             <button type="button" name="logout" id="logout" class="btn btn-danger" onclick="redireciona('logout.php')">
                 Sair
@@ -73,7 +73,8 @@ if ($_SESSION['idadm']) {
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-2 verdeCoop tamanhoBarraLateral fs-4">
-            <div class="mt-3 mb-2 pointerCursor" onclick="carregarConteudo('listarCalendario')">Calendário</div>
+            <div class="mt-3 mb-2 pointerCursor" onclick="window.location.reload()">Calendário</div>
+            <div class="mt-3 mb-2 pointerCursor" onclick="carregarConteudo('listarCalendario')">Agenda</div>
             <div class="mt-3 mb-2 pointerCursor" onclick="carregarConteudo('listarAluno')">Alunos</div>
             <div class="mt-3 mb-2 pointerCursor" onclick="carregarConteudo('listarCurso')">Cursos</div>
             <div class="mt-3 mb-2 pointerCursor" onclick="carregarConteudo('listarTurma')">Turmas</div>
@@ -81,9 +82,291 @@ if ($_SESSION['idadm']) {
 
         </div>
         <div class="col-lg-10 mt-3">
-            <div id="show"></div>
+            <div id="show">
+
+                <div id='calendar'></div>
+            </div>
+
+            <!-- Modal Add Evento-->
+            <div class="modal fade" id="cadastrarEvento" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background: #1E2B37;color: white">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Novo Evento</h1>
+                            <button type="button" class="btn-close text-light" onclick="window.location.reload()"
+                                    aria-label="Close"
+                                    style="color: white !important; background-color: #2c3e50"></button>
+                        </div>
+                        <form method="post" name="frmAddEvento" id="frmAddEvento">
+                            <div class="modal-body">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Título</span>
+                                    <input type="text" class="form-control" placeholder="Título" aria-label="Título"
+                                           id="titulo"
+                                           name="titulo">
+                                </div>
+                                <div class="input-group mb-3">
+
+                                    <span class="input-group-text">Turma</span>
+                                    <select class="form-select" aria-label="Default select example" id="turma"
+                                            name="turma">
+                                        <?php
+                                        $turmas = listarTabela('*', 'turma');
+                                        foreach ($turmas as $turma) {
+                                            $idturma = $turma->idturma;
+                                            $nome = $turma->nomeTurma;
+                                            ?>
+                                            <option value="<?php echo $idturma ?>"><?php echo $nome ?></option>
+
+                                            <?php
+                                        }
+                                        ?>
+
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
+
+                                    <span class="input-group-text" >Curso</span>
+                                    <select class="form-select" aria-label="Default select example" id="curso"
+                                            name="curso">
+                                        <?php
+                                        $cursos = listarTabela('*', 'curso');
+                                        foreach ($cursos as $item) {
+                                            $idturma = $item->idcurso;
+                                            $nome = $item->nomeCurso;
+                                            ?>
+                                            <option value="<?php echo $idturma ?>"><?php echo $nome ?></option>
+
+                                            <?php
+                                        }
+                                        ?>
+
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="dataIn">Data e Hora Inicial</span>
+                                    <input type="datetime-local" class="form-control" placeholder="dataIn"
+                                           aria-label="dataIn"
+                                           id="dataIn" name="dataIn" value="<?php echo DATATIMEATUAL ?>"
+                                           required="required">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="dataEnd">Data e Hora Final</span>
+                                    <input type="datetime-local" class="form-control" placeholder="dataEnd"
+                                           aria-label="dataEnd"
+                                           id="dataEnd" name="dataEnd" value="<?php echo DATATIMEATUAL ?>">
+                                </div>
+                                <div class="input-group mb-3">
+
+                                    <span class="input-group-text" id="cor">Cores</span>
+                                    <select class="form-select" aria-label="Default select example" id="cor"
+                                            name="cor">
+                                        <option value="blue" style="color:blue" selected>Azul</option>
+                                        <option value="gray" style="color:gray">Cinza</option>
+                                        <option value="green" style="color:green">Verde</option>
+                                        <option value="red" style="color:red">Vermelho</option>
+                                        <option value="black" style="color:black">Preto</option>
+                                        <option value="purple" style="color:purple">Roxo</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-group-text" for="comentário">Comentários</label>
+                                <textarea class="form-control" placeholder="Escreva um comentário" maxlength="255"
+                                          id="comentario" name="comentario"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar
+                                </button>
+                                <button type="submit" class="btn btn-primary" id="btnAddEvento">Salvar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Edit Evento-->
+            <div class="modal fade" id="editEvento" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background: #1E2B37;color: white">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Evento</h1>
+                            <button type="button" class="btn-close text-light" onclick="window.location.reload()"
+                                    aria-label="Close"
+                                    style="color: white !important; background-color: #2c3e50"></button>
+                        </div>
+                        <form method="post" name="frmEditEvento" id="frmEditEvento">
+                            <div class="modal-body">
+                                <input type="text" id="idEdit" name="idEdit">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" >Título</span>
+                                    <input type="text" class="form-control" placeholder="Título" aria-label="Título"
+                                           id="tituloEdit"
+                                           name="tituloEdit">
+                                </div>
+                                <div class="input-group mb-3">
+
+                                    <span class="input-group-text">Turma</span>
+                                    <select class="form-select" aria-label="Default select example" id="turmaEdit"
+                                            name="turmaEdit">
+                                        <?php
+                                        $turmas = listarTabela('*', 'turma');
+                                        foreach ($turmas as $turma) {
+                                            $idturma = $turma->idturma;
+                                            $nome = $turma->nomeTurma;
+                                            ?>
+                                            <option value="<?php echo $idturma ?>"><?php echo $nome ?></option>
+
+                                            <?php
+                                        }
+                                        ?>
+
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
+
+                                    <span class="input-group-text" >Curso</span>
+                                    <select class="form-select" aria-label="Default select example" id="cursoEdit"
+                                            name="cursoEdit">
+                                        <?php
+                                        $cursos = listarTabela('*', 'curso');
+                                        foreach ($cursos as $item) {
+                                            $idturma = $item->idcurso;
+                                            $nome = $item->nomeCurso;
+                                            ?>
+                                            <option value="<?php echo $idturma ?>"><?php echo $nome ?></option>
+
+                                            <?php
+                                        }
+                                        ?>
+
+                                    </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="dataIn">Data e Hora Inicial</span>
+                                    <input type="datetime-local" class="form-control" placeholder="dataIn"
+                                           aria-label="dataIn"
+                                           id="dataInEdit" name="dataInEdit" value=""
+                                         >
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="dataEnd">Data e Hora Final</span>
+                                    <input type="datetime-local" class="form-control" placeholder="dataEnd"
+                                           aria-label="dataEnd"
+                                           id="dataEndEdit" name="dataEndEdit" value="">
+                                </div>
+                                <div class="input-group mb-3">
+
+                                    <span class="input-group-text" id="cor">Cores</span>
+                                    <select class="form-select" aria-label="Default select example" id="corEdit"
+                                            name="corEdit">
+                                        <option value="blue" style="color:blue" selected>Azul</option>
+                                        <option value="gray" style="color:gray">Cinza</option>
+                                        <option value="green" style="color:green">Verde</option>
+                                        <option value="red" style="color:red">Vermelho</option>
+                                        <option value="black" style="color:black">Preto</option>
+                                        <option value="purple" style="color:purple">Roxo</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <label class="input-group-text" for="comentário">Comentários</label>
+                                <textarea class="form-control" placeholder="Escreva um comentário" maxlength="255"
+                                          id="comentarioEdit" name="comentarioEdit"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar
+                                </button>
+                                <button type="submit" class="btn btn-primary" id="btnEditEvento">Salvar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const calendarEl = document.getElementById('calendar')
+                    const calendar = new FullCalendar.Calendar(calendarEl, {
+                        initialView: 'dayGridMonth', //tipo de calendário inicial quando abre o site
+
+                        dayMaxEventRows: true,
+                        views: {
+                            timeGrid: {
+                                dayMaxEventRows: 6 // aqui vc fala quantos eventos pode aparecer no dia do Mês
+                            }
+                        },
+                        allDaySlot: false,
+                        slotDuration: '00:10',
+                        slotLabelInterval: '00:30',
+                        timeZone: 'America/Sao_Paulo',
+                        headerToolbar: { // aq é o button q q clica pra abrir os tipos de calendário
+                            left: 'prev,next',
+                            center: 'title',
+                            right: 'timeGridDay,dayGridWeek,dayGridMonth,multiMonthYear' //ordem dos botoes
+                        },
+                        editable: false, //se está ativado, eu posso mover os eventos de lugar sem precisar clicar pra editar
+                        selectable: false, //literalmente selecionar os itens
+                        buttonText: { //tradução das palavras padroes
+                            today: `Hoje`,
+                            month: 'Mês',
+                            week: 'Semana',
+                            day: 'Dia',
+                            year: 'Ano',
+                            list: 'Lista',
+
+                        },
+                        locale: 'pt-br',
+                        events: [ //aqui fica os eventos q aparece no calendário
+                            <?php
+                            $vari = listarTabela('*', 'calendario');
+                            foreach ($vari as $item) {
+
+                                $id = $item->idcalendario;
+                                $titulo = $item->titulo;
+                                $dataInicio = $item->dataIn;
+                                $dataFinal = $item->dataEnd;
+                                $cor = $item->cor;
+                                echo "
+                {
+                    title: '$titulo',
+                    start: '$dataInicio',
+                    end: '$dataFinal',
+                    backgroundColor: '$cor',
+                    borderColor: '$cor',
+                    
+                    
+                },";
+                            }
+
+                            ?>
+
+
+                        ],
+                        //
+                        //dateClick: function (info) {
+                        //    abrirModalJsAddEvento('editarEvento17', 'A', 'btnEditEvento', 'editEvento', 'frmEditEvento')
+                        //    console.log('Clicked on: ' + info.dateStr); //aqui ele te passa a data q vc clicou
+                        //    console.log('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY); //coodernadas do mouse
+                        //    console.log('Current view: ' + info.view.type); // tipo de calendário
+                        //    info.dayEl.style.backgroundColor = 'blue'; // consigo mudar a cor do item só de clicar
+                        //},
+                        //
+                    })
+                    calendar.render()
+                })
+
+            </script>
+
+            <!--<script src="./js/controle.js"></script>-->
+
         </div>
     </div>
+</div>
 </div>
 
 
@@ -140,7 +423,8 @@ if ($_SESSION['idadm']) {
                         </div>
                         <div class="col-4">
                             <label for="cadCelularAluno" class="label-control">Celular:</label>
-                            <input type="text" name="cadCelularAluno" id="cadCelularAluno" class="form-control telefoneBR"
+                            <input type="text" name="cadCelularAluno" id="cadCelularAluno"
+                                   class="form-control telefoneBR"
                                    required="required">
                         </div>
                     </div>
@@ -222,7 +506,8 @@ if ($_SESSION['idadm']) {
                         </div>
                         <div class="col-4">
                             <label for="editCelularAluno" class="label-control">Celular:</label>
-                            <input type="text" name="editCelularAluno" id="editCelularAluno" class="form-control telefoneBR"
+                            <input type="text" name="editCelularAluno" id="editCelularAluno"
+                                   class="form-control telefoneBR"
                                    required="required">
                         </div>
                     </div>
@@ -431,7 +716,8 @@ if ($_SESSION['idadm']) {
                     </div>
                     <div class="">
                         <p class="fs-3">Tem certeza que deseja deletar esse administrador?</p>
-                        <p><b>Realizar essa ação excluirá todos os registros desse administrador, não havendo possibilidade
+                        <p><b>Realizar essa ação excluirá todos os registros desse administrador, não havendo
+                                possibilidade
                                 de recuperação!</b></p>
                     </div>
                     <div>
@@ -556,7 +842,7 @@ if ($_SESSION['idadm']) {
             </div>
             <form action="" method="post" name="frmCadTurma" id="frmCadTurma">
                 <div class="modal-body">
-                    <div >
+                    <div>
                         <label for="cadNumeroTurma" class="label-control">Número da turma:</label>
                         <input type="text" name="cadNumeroTurma" id="cadNumeroTurma" required="required"
                                class="form-control">
@@ -644,7 +930,9 @@ if ($_SESSION['idadm']) {
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="fecharModal('listarTurma')">Fechar</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                            onclick="fecharModal('listarTurma')">Fechar
+                    </button>
                     <button type="submit" class="btn btn-danger" id="btnDeleteAdm">Deletar</button>
                 </div>
             </form>

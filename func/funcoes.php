@@ -26,11 +26,11 @@ function listarItemExpecifico($campos, $tabela, $campoExpecifico, $valorCampo)
     $conn = conectar();
     try {
         $conn->beginTransaction();
-        $sqlListaTabelas = $conn->prepare("SELECT $campos FROM $tabela WHERE ? = ?");
+        $sqlListaTabelas = $conn->prepare("SELECT $campos FROM $tabela WHERE $campoExpecifico like ?");
 //        $sqlListaTabelas->bindValue(1, $campos, PDO::PARAM_STR);
 //        $sqlListaTabelas->bindValue(2, $tabela, PDO::PARAM_STR);
-        $sqlListaTabelas->bindValue(1, $campoExpecifico, PDO::PARAM_STR);
-        $sqlListaTabelas->bindValue(2, $valorCampo, PDO::PARAM_STR);
+//        $sqlListaTabelas->bindValue(1, $campoExpecifico, PDO::PARAM_STR);
+        $sqlListaTabelas->bindValue(1, "%$valorCampo%", PDO::PARAM_STR);
         $sqlListaTabelas->execute();
         $conn->commit();
         if ($sqlListaTabelas->rowCount() > 0) {
@@ -591,7 +591,14 @@ function dataHoraGlobal($data, $hora = 'S', $pais = 'BR')
     }
     return $data;
 }
+function dataHoraGlobalGAMBIARRA($data)
+{
+    $data = new DateTime($data);
 
+            return $data->format('Y-m-d H:i:00');
+
+
+}
 function converterNumComVirgula($numm)
 {
     $numero = $numm;

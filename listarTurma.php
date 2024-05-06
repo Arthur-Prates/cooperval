@@ -16,13 +16,13 @@
     <tbody>
     <?php
     $cont = 1;
-    $adm = listarTabela('*', 'turma');
-    if ($adm !== false){
-        foreach ($adm as $admItem) {
-            $id = $admItem->idturma;
-            $nome = $admItem->numeroTurma;
-            $email = $admItem->nomeTurma;
-            $nascimento = $admItem->codigoTurma;
+    $turma = listarTabela('*', 'turma');
+    if ($turma !== false){
+        foreach ($turma as $turmaItem) {
+            $id = $turmaItem->idturma;
+            $nome = $turmaItem->numeroTurma;
+            $email = $turmaItem->nomeTurma;
+            $nascimento = $turmaItem->codigoTurma;
 
 
             ?>

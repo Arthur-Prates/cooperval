@@ -15,12 +15,12 @@
     <tbody>
     <?php
     $cont = 1;
-    $adm = listarTabela('*', 'curso');
-    if ($adm !== false){
-        foreach ($adm as $admItem) {
-            $id = $admItem->idcurso;
-            $nome = $admItem->nomeCurso;
-            $local = $admItem->localCurso;
+    $curso = listarTabela('*', 'curso');
+    if ($curso !== false){
+        foreach ($curso as $cursoItem) {
+            $id = $cursoItem->idcurso;
+            $nome = $cursoItem->nomeCurso;
+            $local = $cursoItem->localCurso;
 
             ?>
             <tr>

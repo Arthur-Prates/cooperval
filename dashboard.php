@@ -140,14 +140,14 @@ if ($_SESSION['idadm']) {
                         </div>
                         <div class="col-4">
                             <label for="cadCelularAluno" class="label-control">Celular:</label>
-                            <input type="text" name="cadCelularAluno" id="cadCelularAluno" class="form-control"
+                            <input type="text" name="cadCelularAluno" id="cadCelularAluno" class="form-control telefoneBR"
                                    required="required">
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col-6">
                             <label for="cadCpfAluno" class="label-control">Cpf:</label>
-                            <input type="text" name="cadCpfAluno" id="cadCpfAluno" class="form-control"
+                            <input type="text" name="cadCpfAluno" id="cadCpfAluno" class="form-control cpf"
                                    required="required">
                         </div>
                         <div class="col-6">
@@ -197,8 +197,8 @@ if ($_SESSION['idadm']) {
                     </div>
                     <div class="row mt-2">
                         <div class="col-12">
-                            <label for="turmaDoAluno" class="label-control">Turma:</label>
-                            <select name="turmaDoAluno" id="turmaDoAluno" class="form-control">
+                            <label for="editTurmaDoAluno" class="label-control">Turma:</label>
+                            <select name="editTurmaDoAluno" id="editTurmaDoAluno" class="form-control">
                                 <?php
                                 $curso = listarTabela('*', 'turma');
                                 foreach ($curso as $item) {
@@ -222,14 +222,14 @@ if ($_SESSION['idadm']) {
                         </div>
                         <div class="col-4">
                             <label for="editCelularAluno" class="label-control">Celular:</label>
-                            <input type="text" name="editCelularAluno" id="editCelularAluno" class="form-control"
+                            <input type="text" name="editCelularAluno" id="editCelularAluno" class="form-control telefoneBR"
                                    required="required">
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col-6">
                             <label for="editCpfAluno" class="label-control">Cpf:</label>
-                            <input type="text" name="editCpfAluno" id="editCpfAluno" class="form-control"
+                            <input type="text" name="editCpfAluno" id="editCpfAluno" class="form-control cpf"
                                    required="required">
                         </div>
                         <div class="col-6">
@@ -322,14 +322,14 @@ if ($_SESSION['idadm']) {
                         </div>
                         <div class="col-12 mt-2">
                             <label for="cadCelularAdm" class="label-control">Celular:</label>
-                            <input type="text" name="cadCelularAdm" id="cadCelularAdm" class="form-control"
+                            <input type="text" name="cadCelularAdm" id="cadCelularAdm" class="form-control telefoneBR"
                                    required="required">
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col-6">
                             <label for="cadCpfAdm" class="label-control">Cpf:</label>
-                            <input type="text" name="cadCpfAdm" id="cadCpfAdm" class="form-control"
+                            <input type="text" name="cadCpfAdm" id="cadCpfAdm" class="form-control cpf"
                                    required="required">
                         </div>
                         <div class="col-6">
@@ -390,14 +390,14 @@ if ($_SESSION['idadm']) {
                         </div>
                         <div class="col-12 mt-2">
                             <label for="editCelularAdm" class="label-control">Celular:</label>
-                            <input type="text" name="editCelularAdm" id="editCelularAdm" class="form-control"
+                            <input type="text" name="editCelularAdm" id="editCelularAdm" class="form-control telefoneBR"
                                    required="required">
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="col-6">
                             <label for="editCpfAdm" class="label-control">Cpf:</label>
-                            <input type="text" name="editCpfAdm" id="editCpfAdm" class="form-control"
+                            <input type="text" name="editCpfAdm" id="editCpfAdm" class="form-control cpf"
                                    required="required">
                         </div>
                         <div class="col-6">
@@ -644,7 +644,7 @@ if ($_SESSION['idadm']) {
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="fecharModal('listarTurma')">Fechar</button>
                     <button type="submit" class="btn btn-danger" id="btnDeleteAdm">Deletar</button>
                 </div>
             </form>

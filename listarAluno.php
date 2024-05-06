@@ -1,6 +1,9 @@
 <div class="d-flex justify-content-between align-items-center">
     <p class="fs-3">#Aluno(s)</p>
-    <button class="btn btn-sm btn-secondary" onclick="abrirModalJsAluno('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','cadAluno','A','btnCadAluno','addAluno','frmCadAluno')">Cadastrar</button>
+    <button class="btn btn-sm btn-secondary"
+            onclick="abrirModalJsAluno('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','cadAluno','A','btnCadAluno','addAluno','frmCadAluno')">
+        Cadastrar
+    </button>
 </div>
 
 <table class="table">
@@ -17,32 +20,41 @@
     <tbody>
     <?php
     $cont = 1;
-    $adm = listarTabela('*', 'aluno');
-    if ($adm !== false){
-        foreach ($adm as $admItem) {
-            $id = $admItem->idaluno;
-            $nome = $admItem->nomeAluno;
-            $email = $admItem->emailAluno;
-            $nascimento = $admItem->nascimentoAluno;
-            $celular = $admItem->celularAluno;
+    $aluno = listarTabela('*', 'aluno');
+    if ($aluno !== false) {
+        foreach ($aluno as $alunoItem) {
+            $id = $alunoItem->idaluno;
+            $nome = $alunoItem->nomeAluno;
+            $sobrenome = $alunoItem->sobrenomeAluno;
+            $email = $alunoItem->emailAluno;
+            $nascimento = $alunoItem->nascimentoAluno;
+            $celular = $alunoItem->celularAluno;
+            $turma = $alunoItem->idturma;
+            $cpf = $alunoItem->cpfAluno;
 
             ?>
             <tr>
                 <th scope="row"><?php echo $cont ?></th>
-                <td><?php echo $nome ?></td>
+                <td><?php echo $nome . ' ' . $sobrenome; ?></td>
                 <td><?php echo $email ?></td>
                 <td><?php echo $nascimento ?></td>
                 <td><?php echo $celular ?></td>
                 <td>
                     <button class="btn btn-success btn-sm">Ver mais</button>
-                    <button class="btn btn-primary btn-sm" onclick="abrirModalJsAluno('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','editAluno','A','btnEditAluno','editAluno','frmEditAluno')">Alterar</button>
-                    <button class="btn btn-danger btn-sm" onclick="abrirModalJsAluno('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','deleteAluno','A','btnDeleteAluno','deleteAluno','frmDeleteAluno')">Deletar</button>
+                    <button class="btn btn-primary btn-sm"
+                            onclick="abrirModalJsAluno('<?php echo $id?>','idEditAluno','<?php echo $nome?>','editNomeAluno','<?php echo $sobrenome?>','editSobrenomeAluno','<?php echo $turma?>','editTurmaDoAluno','<?php echo $email?>','editEmailAluno','<?php echo $celular?>','editCelularAluno','<?php echo $cpf?>','editCpfAluno','<?php echo $nascimento?>','editNascimentoAluno','editAluno','A','btnEditAluno','editAluno','frmEditAluno')">
+                        Alterar
+                    </button>
+                    <button class="btn btn-danger btn-sm"
+                            onclick="abrirModalJsAluno('<?php echo $id?>','idDeleteAluno','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','deleteAluno','A','btnDeleteAluno','deleteAluno','frmDeleteAluno')">
+                        Deletar
+                    </button>
                 </td>
             </tr>
             <?php
             ++$cont;
         }
-    }else{
+    } else {
         ?>
         <th colspan="5" class="fs-5 text-center">NENHUM ALUNO CADASTRADO!</th>
         <?php

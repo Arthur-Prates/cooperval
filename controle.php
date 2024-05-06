@@ -25,6 +25,15 @@ if (!empty($controle) && isset($controle)) {
         case 'listarAdm':
             include_once('listarAdm.php');
             break;
+        case 'addAdm':
+            include_once('cadAdm.php');
+            break;
+        case 'editAdm':
+            include_once('editAdm.php');
+            break;
+        case 'deleteAdm':
+            include_once('deleteAdm.php');
+            break;
         case 'listarAluno':
             include_once('listarAluno.php');
             break;

@@ -28,9 +28,9 @@
                 <td><?php echo $nome ?></td>
                 <td><?php echo $local ?></td>
                 <td>
-                    <button class="btn btn-success">Ativar</button>
-                    <button class="btn btn-primary" onclick="abrirModalJsCurso('editCurso','A','btnEditCurso','editCurso','frmEditCurso')">Alterar</button>
-                    <button class="btn btn-danger" onclick="abrirModalJsCurso('deleteCurso','A','btnDeleteCurso','deleteCurso','frmDeleteCurso')">Deletar</button>
+                    <button class="btn btn-success btn-sm">Ativar</button>
+                    <button class="btn btn-primary btn-sm" onclick="abrirModalJsCurso('editCurso','A','btnEditCurso','editCurso','frmEditCurso')">Alterar</button>
+                    <button class="btn btn-danger btn-sm" onclick="abrirModalJsCurso('deleteCurso','A','btnDeleteCurso','deleteCurso','frmDeleteCurso')">Deletar</button>
                 </td>
             </tr>
             <?php

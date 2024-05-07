@@ -178,7 +178,7 @@ function mostrarProcessando() {
     divProcessando.style.top = "50%";
     divProcessando.style.left = "50%";
     divProcessando.style.transform = "translate(-50%, -50%)";
-    divProcessando.innerHTML = '<img src="./img/loadin.gif" width="200px" alt="Processando..." title="Processando...">';
+    divProcessando.innerHTML = '<img src="./img/loadin.gif" width="100px" alt="Processando..." title="Processando...">';
     document.body.appendChild(divProcessando);
 }
 

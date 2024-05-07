@@ -172,7 +172,7 @@ function esconderProcessando() {
 }
 
 
-function abrirModalJsAddEvento(id, idIP, titulo, tituloIP, dataIN, dataINIP, dataEND, dataENDIP, comentario, comentarioIP, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+function abrirModalJsAddEvento(id, idIP, titulo, tituloIP, dataIN, dataINIP, dataEND, dataENDIP, comentario, comentarioIP, turma, turmaIP, curso, cursoIP, cor, corIP, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
     const formDados = document.getElementById(`${formulario}`)
 
     var botoes = document.getElementById(`${botao}`);
@@ -199,6 +199,31 @@ function abrirModalJsAddEvento(id, idIP, titulo, tituloIP, dataIN, dataINIP, dat
         if (comentario !== 'nao') {
             ip3.value = comentario
         }
+        let ip4 = document.getElementById(`${turmaIP}`)
+        if (turma !== 'nao') {
+            ip4.value = turma
+        }
+        let ip5 = document.getElementById(`${cursoIP}`)
+        if (curso !== 'nao') {
+            ip5.value = curso
+        }
+        let ip6 = document.getElementById(`${corIP}`)
+        if (cor !== 'nao') {
+            if (cor === 'blue') {
+                cor = 'Azul'
+            } else if (cor === 'gray') {
+                cor = 'Cinza'
+            } else if (cor === 'green') {
+                cor = 'Verde'
+            } else if (cor === 'red') {
+                cor = 'Vermelho'
+            } else if (cor === 'purple') {
+                cor = 'Roxo'
+            } else {
+                cor = 'Preto'
+            }
+            ip6.value = cor
+        }
         const submitHandler = function (event) {
             event.preventDefault();
 
@@ -220,12 +245,12 @@ function abrirModalJsAddEvento(id, idIP, titulo, tituloIP, dataIN, dataINIP, dat
                     }
                     ModalInstacia.hide();
                 })
-                // .catch(error => {
-                //
-                //     botoes.disabled = false;
-                //     ModalInstacia.hide();
-                //     console.error('Erro na requisição:', error);
-                // });
+            // .catch(error => {
+            //
+            //     botoes.disabled = false;
+            //     ModalInstacia.hide();
+            //     console.error('Erro na requisição:', error);
+            // });
 
 
         }
@@ -348,12 +373,12 @@ function abrirModalJsAluno(idId, inId, idNome, inNome, idSobrenome, inSobrenome,
                     }
                     ModalInstacia.hide();
                 })
-            .catch(error => {
+                .catch(error => {
 
-                botoes.disabled = false;
-                ModalInstacia.hide();
-                console.error('Erro na requisição:', error);
-            });
+                    botoes.disabled = false;
+                    ModalInstacia.hide();
+                    console.error('Erro na requisição:', error);
+                });
 
 
         }
@@ -492,36 +517,37 @@ function abrirModalJsTurma(nomeModal, abrirModal = 'A', botao, addEditDel, formu
 
 }
 
-function deleteGeral(addEditDel,formulario) {
+function deleteGeral(addEditDel, formulario) {
     const formDados = document.getElementById(`${formulario}`)
 
-        const submitHandler = function (event) {
-            event.preventDefault();
+    const submitHandler = function (event) {
+        event.preventDefault();
 
-            const form = event.target;
-            const formData = new FormData(form);
+        const form = event.target;
+        const formData = new FormData(form);
 
-            formData.append('controle', `${addEditDel}`)
+        formData.append('controle', `${addEditDel}`)
 
-            fetch('controle.php', {
-                method: 'POST', body: formData,
+        fetch('controle.php', {
+            method: 'POST', body: formData,
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                if (data.success) {
+                    // window.location.reload()
+                }
             })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data)
-                    if (data.success) {
-                        // window.location.reload()
-                        }
-                })
-                // .catch(error => {
-                //     console.error('Erro na requisição:', error);
-                // });
+        // .catch(error => {
+        //     console.error('Erro na requisição:', error);
+        // });
 
 
-        }
-        formDados.addEventListener('submit', submitHandler);
+    }
+    formDados.addEventListener('submit', submitHandler);
 
 }
+
 function addOuEditSucesso(UserAlter, icon, addOuEditOuDelete) {
     let timerInterval;
     Swal.fire({

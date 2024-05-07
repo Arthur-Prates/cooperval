@@ -14,7 +14,7 @@ if (isset($Dados) && !empty($Dados)) {
     $cor = isset($Dados['corEdit']) ? addslashes($Dados['corEdit']) : '';
     $retornoInsert = alterar7Item('calendario','titulo','idturma','idcurso','comentario','dataIn','dataEnd','cor',$nome,$turma,$curso,$comentario,$dataHoraIn,$dataHoraEnd,$cor,'idcalendario',$id);
     if ($retornoInsert > 0) {
-        echo json_encode(['success' => true, 'message' => "Evento <b>$nome</b> alterado com sucesso"], JSON_THROW_ON_ERROR);
+        echo json_encode(['success' => true, 'message' => "Evento alterado com sucesso"], JSON_THROW_ON_ERROR);
     } else {
         echo json_encode(['success' => false, 'message' => "Evento Não alterado! Error Bd"], JSON_THROW_ON_ERROR);
     }

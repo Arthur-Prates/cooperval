@@ -72,5 +72,3 @@
         <?php echo DATAATUAL?>
     </div>
 </div>
-
-

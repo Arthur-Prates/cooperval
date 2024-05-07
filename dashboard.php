@@ -30,6 +30,8 @@ if ($_SESSION['idadm']) {
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css'>
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.0.96/css/materialdesignicons.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 
 <body>
@@ -935,6 +937,7 @@ if ($_SESSION['idadm']) {
             </div>
             <form action="" method="post" name="frmEditTurma" id="frmEditTurma">
                 <div class="modal-body">
+                    <input type="text" id="idEditTurma" name="idEditTurma">
                     <div class="">
                         <label for="editNumeroTurma" class="label-control">Número da Turma:</label>
                         <input type="text" name="editNumeroTurma" placeholder="Digite o Número da Sua Turma" id="editNumeroTurma" required="required"
@@ -1011,6 +1014,7 @@ if ($_SESSION['idadm']) {
         integrity="sha512-oJCa6FS2+zO3EitUSj+xeiEN9UTr+AjqlBZO58OPadb2RfqwxHpjTU8ckIC8F4nKvom7iru2s8Jwdo+Z8zm0Vg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="./js/controle.js"></script>
 
 </body>

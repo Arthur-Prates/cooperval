@@ -26,12 +26,11 @@ var options = {
 $('.telefoneBR').mask('(00) 0 0000-0000', options);
 
 
-
 function redireciona(page) {
     window.location.href = page
 }
 
-function fecharModal(page){
+function fecharModal(page) {
     carregarConteudo(`${page}`)
 }
 
@@ -121,7 +120,6 @@ function fazerLogin() {
     })
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
             if (data.success) {
                 mostrarProcessando();
                 setTimeout(function () {
@@ -161,7 +159,7 @@ function mostrarProcessando() {
     divProcessando.style.top = "50%";
     divProcessando.style.left = "50%";
     divProcessando.style.transform = "translate(-50%, -50%)";
-    divProcessando.innerHTML = '<img src="./img/loadin.gif" width="200px" alt="Processando..." title="Processando...">';
+    divProcessando.innerHTML = '<img src="./img/loadin.gif" width="100px" alt="Processando..." title="Processando...">';
     document.body.appendChild(divProcessando);
 }
 
@@ -174,14 +172,58 @@ function esconderProcessando() {
 }
 
 
-function abrirModalJsAddEvento(nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+function abrirModalJsAddEvento(id, idIP, titulo, tituloIP, dataIN, dataINIP, dataEND, dataENDIP, comentario, comentarioIP, turma, turmaIP, curso, cursoIP, cor, corIP, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
     const formDados = document.getElementById(`${formulario}`)
 
     var botoes = document.getElementById(`${botao}`);
     const ModalInstacia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
     if (abrirModal === 'A') {
-        ModalInstacia.show();
-
+        ModalInstacia.show()
+        let idIp = document.getElementById(`${idIP}`);
+        if (id !== 'nao') {
+            idIp.value = id
+        }
+        let ip = document.getElementById(`${tituloIP}`);
+        if (titulo !== 'nao') {
+            ip.value = titulo
+        }
+        let ip1 = document.getElementById(`${dataINIP}`)
+        if (dataIN !== 'nao') {
+            ip1.value = dataIN
+        }
+        let ip2 = document.getElementById(`${dataENDIP}`)
+        if (dataEND !== 'nao') {
+            ip2.value = dataEND
+        }
+        let ip3 = document.getElementById(`${comentarioIP}`)
+        if (comentario !== 'nao') {
+            ip3.value = comentario
+        }
+        let ip4 = document.getElementById(`${turmaIP}`)
+        if (turma !== 'nao') {
+            ip4.value = turma
+        }
+        let ip5 = document.getElementById(`${cursoIP}`)
+        if (curso !== 'nao') {
+            ip5.value = curso
+        }
+        let ip6 = document.getElementById(`${corIP}`)
+        if (cor !== 'nao') {
+            if (cor === 'blue') {
+                cor = 'Azul'
+            } else if (cor === 'gray') {
+                cor = 'Cinza'
+            } else if (cor === 'green') {
+                cor = 'Verde'
+            } else if (cor === 'red') {
+                cor = 'Vermelho'
+            } else if (cor === 'purple') {
+                cor = 'Roxo'
+            } else {
+                cor = 'Preto'
+            }
+            ip6.value = cor
+        }
         const submitHandler = function (event) {
             event.preventDefault();
 
@@ -197,18 +239,18 @@ function abrirModalJsAddEvento(nomeModal, abrirModal = 'A', botao, addEditDel, f
             })
                 .then(response => response.json())
                 .then(data => {
-
+                    console.log(data)
                     if (data.success) {
                         window.location.reload()
                     }
                     ModalInstacia.hide();
                 })
-                .catch(error => {
-
-                    botoes.disabled = false;
-                    ModalInstacia.hide();
-                    console.error('Erro na requisição:', error);
-                });
+            // .catch(error => {
+            //
+            //     botoes.disabled = false;
+            //     ModalInstacia.hide();
+            //     console.error('Erro na requisição:', error);
+            // });
 
 
         }
@@ -220,54 +262,6 @@ function abrirModalJsAddEvento(nomeModal, abrirModal = 'A', botao, addEditDel, f
     }
 
 }
-
-function abrirModalJsEditEvento(nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
-    const formDados = document.getElementById(`${formulario}`)
-
-    var botoes = document.getElementById(`${botao}`);
-    const ModalInstacia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
-    if (abrirModal === 'A') {
-        ModalInstacia.show();
-
-        const submitHandler = function (event) {
-            event.preventDefault();
-
-            botoes.disabled = true;
-
-            const form = event.target;
-            const formData = new FormData(form);
-
-            formData.append('controle', `${addEditDel}`)
-
-            fetch('controle.php', {
-                method: 'POST', body: formData,
-            })
-                .then(response => response.json())
-                .then(data => {
-
-                    if (data.success) {
-                        window.location.reload()
-                    }
-                    ModalInstacia.hide();
-                })
-                .catch(error => {
-
-                    botoes.disabled = false;
-                    ModalInstacia.hide();
-                    console.error('Erro na requisição:', error);
-                });
-
-
-        }
-        formDados.addEventListener('submit', submitHandler);
-
-
-    } else {
-        ModalInstacia.hide();
-    }
-
-}
-
 
 function abrirModalJsCurso(nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
     const formDados = document.getElementById(`${formulario}`)
@@ -373,18 +367,18 @@ function abrirModalJsAluno(idId, inId, idNome, inNome, idSobrenome, inSobrenome,
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data)
+                    // console.log(data)
                     if (data.success) {
                         carregarConteudo('listarAluno')
                     }
                     ModalInstacia.hide();
                 })
-            // .catch(error => {
-            //
-            //     botoes.disabled = false;
-            //     ModalInstacia.hide();
-            //     console.error('Erro na requisição:', error);
-            // });
+                .catch(error => {
+
+                    botoes.disabled = false;
+                    ModalInstacia.hide();
+                    console.error('Erro na requisição:', error);
+                });
 
 
         }
@@ -476,7 +470,6 @@ function abrirModalJsAdm(idId, inId, idNome, inNome, idSobrenome, inSobrenome, i
 }
 
 
-
 function abrirModalJsTurma(nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
     const formDados = document.getElementById(`${formulario}`)
 
@@ -524,6 +517,30 @@ function abrirModalJsTurma(nomeModal, abrirModal = 'A', botao, addEditDel, formu
 
 }
 
+function deleteGeral(addEditDel, formulario) {
+    const formDados = document.getElementById(`${formulario}`)
+
+    const submitHandler = function (event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        formData.append('controle', `${addEditDel}`)
+
+        fetch('controle.php', {
+            method: 'POST', body: formData,
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                if (data.success) {
+                    // window.location.reload()
+                }
+            })
+        // .catch(error => {
+        //     console.error('Erro na requisição:', error);
+        // });
 
 var colors = new Array(
     [0, 0, 0],
@@ -587,3 +604,62 @@ function updateGradient()
 setInterval(updateGradient,10);
 
 
+    }
+    formDados.addEventListener('submit', submitHandler);
+
+}
+
+function addOuEditSucesso(UserAlter, icon, addOuEditOuDelete) {
+    let timerInterval;
+    Swal.fire({
+        title: `${UserAlter} ${addOuEditOuDelete} com sucesso! <br> Atualizando Dados.`,
+        html: "Fechando em <b></b> ms.",
+        timer: 1500,
+        icon: `${icon}`,
+        timerProgressBar: true,
+        didOpen: () => {
+            Swal.showLoading();
+            const timer = Swal.getPopup().querySelector("b");
+            timerInterval = setInterval(() => {
+
+                timer.textContent = `${Swal.getTimerLeft()}`;
+            }, 100);
+        },
+        willClose: () => {
+            clearInterval(timerInterval);
+        }
+    }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+            console.log("fechando..");
+        }
+    });
+}
+
+
+function addErro() {
+    let timerInterval;
+    Swal.fire({
+        title: "Erro ao Manipular <br> Tente Novamente.",
+        html: "Fechando em <b></b> ms.",
+        timer: 1500,
+        icon: "error",
+        timerProgressBar: true,
+        didOpen: () => {
+            Swal.showLoading();
+            const timer = Swal.getPopup().querySelector("b");
+            timerInterval = setInterval(() => {
+
+                timer.textContent = `${Swal.getTimerLeft()}`;
+            }, 100);
+        },
+        willClose: () => {
+            clearInterval(timerInterval);
+        }
+    }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+            console.log("fechando..");
+        }
+    });
+};

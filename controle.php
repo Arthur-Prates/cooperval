@@ -76,6 +76,12 @@ if (!empty($controle) && isset($controle)) {
         case 'addEvento':
             include_once('addEvento.php');
             break;
+        case 'editEvento':
+            include_once('editEvento.php');
+            break;
+        case 'deleteEvento':
+            include_once('deleteEvento.php');
+            break;
         default:
             include_once('index.php');
             break;

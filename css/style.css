@@ -270,6 +270,7 @@ body {
     background-color: rgba(126, 0, 0, 0.55);
     border: #940000 1px solid;
 }
+<<<<<<< HEAD
 .inputii {
     display: flex;
     flex-direction: column;
@@ -333,3 +334,11 @@ body {
     filter: blur(1px);
     transform: scale(0.95, 0.95);
 }
+=======
+
+.inputInvisivel{
+    background: transparent !important;
+    border: none !important;
+    cursor:default !important;
+}
+>>>>>>> b173d5ec029cf0479cc02bcf0c488312be241dbf

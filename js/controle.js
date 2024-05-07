@@ -35,6 +35,25 @@ function fecharModal(page) {
 }
 
 
+function ativarDesativar(pagina, id, recarregar) {
+    fetch(`${pagina}`, {
+        body: 'id=' + encodeURIComponent(id), headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        }, method: 'POST',
+    })
+        .then(response => response.json())
+        .then(data => {
+            alertSuccess(data.message, '#65B307')
+            carregarConteudo(`${recarregar}`)
+            // console.log(data)
+        })
+        .catch(error => {
+            console.error('Erro na requisição:', error);
+        });
+}
+
+
+
 var design = anime({
     targets: 'svg #XMLID5',
     keyframes: [
@@ -241,16 +260,18 @@ function abrirModalJsAddEvento(id, idIP, titulo, tituloIP, dataIN, dataINIP, dat
                 .then(data => {
                     console.log(data)
                     if (data.success) {
-                        window.location.reload()
+                        alertSuccess(data.message, 'pink')
+                        carregarConteudo('listarCalendario')
+                        document.getElementById(`${formulario}`).reset()
                     }
                     ModalInstacia.hide();
                 })
-            // .catch(error => {
-            //
-            //     botoes.disabled = false;
-            //     ModalInstacia.hide();
-            //     console.error('Erro na requisição:', error);
-            // });
+            .catch(error => {
+
+                botoes.disabled = false;
+                ModalInstacia.hide();
+                console.error('Erro na requisição:', error);
+            });
 
 
         }
@@ -263,13 +284,26 @@ function abrirModalJsAddEvento(id, idIP, titulo, tituloIP, dataIN, dataINIP, dat
 
 }
 
-function abrirModalJsCurso(nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+function abrirModalJsCurso(idId, inId, idNome, inNome, idLocal, inLocal, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
     const formDados = document.getElementById(`${formulario}`)
 
     var botoes = document.getElementById(`${botao}`);
     const ModalInstacia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
     if (abrirModal === 'A') {
         ModalInstacia.show();
+
+        const inputid = document.getElementById(`${inId}`);
+        if (inId !== 'nao') {
+            inputid.value = idId;
+        }
+        const nome = document.getElementById(`${inNome}`);
+        if (inNome !== 'nao') {
+            nome.value = idNome;
+        }
+        const local = document.getElementById(`${inLocal}`);
+        if (inLocal !== 'nao') {
+            local.value = idLocal;
+        }
 
         const submitHandler = function (event) {
             event.preventDefault();
@@ -286,23 +320,32 @@ function abrirModalJsCurso(nomeModal, abrirModal = 'A', botao, addEditDel, formu
             })
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data)
 
                     if (data.success) {
-                        window.location.reload()
+                        carregarConteudo('listarCurso')
+                        if (`${addEditDel}` === 'addCurso' || `${addEditDel}` === 'deleteCurso') {
+                            alertSuccess(data.message, '#65B307')
+                            botoes.disabled = false;
+                            document.getElementById(`${formulario}`).reset()
+                        } else if (`${addEditDel}` === 'editCurso') {
+                            alertSuccess(data.message, '#2b58de')
+                        }
+
+                    } else {
+                        alertError(data.message)
                     }
                     ModalInstacia.hide();
                 })
-                .catch(error => {
-
-                    botoes.disabled = false;
-                    ModalInstacia.hide();
-                    console.error('Erro na requisição:', error);
-                });
+            .catch(error => {
+                botoes.disabled = false;
+                ModalInstacia.hide();
+                console.error('Erro na requisição:', error);
+            });
 
 
         }
         formDados.addEventListener('submit', submitHandler);
-
 
     } else {
         ModalInstacia.hide();
@@ -370,6 +413,16 @@ function abrirModalJsAluno(idId, inId, idNome, inNome, idSobrenome, inSobrenome,
                     // console.log(data)
                     if (data.success) {
                         carregarConteudo('listarAluno')
+                        if (`${addEditDel}` === 'addAluno' || `${addEditDel}` === 'deleteAluno') {
+                            alertSuccess(data.message, '#65B307')
+                            botoes.disabled = false;
+                            document.getElementById(`${formulario}`).reset()
+                        } else if (`${addEditDel}` === 'editAluno') {
+                            alertSuccess(data.message, '#2b58de')
+                        }
+
+                    } else {
+                        alertError(data.message)
                     }
                     ModalInstacia.hide();
                 })
@@ -383,7 +436,6 @@ function abrirModalJsAluno(idId, inId, idNome, inNome, idSobrenome, inSobrenome,
 
         }
         formDados.addEventListener('submit', submitHandler);
-
 
     } else {
         ModalInstacia.hide();
@@ -400,7 +452,7 @@ function abrirModalJsAdm(idId, inId, idNome, inNome, idSobrenome, inSobrenome, i
     if (abrirModal === 'A') {
         ModalInstacia.show();
 
-        const inputid = document.getElementById(`${idId}`);
+        const inputid = document.getElementById(`${inId}`);
         if (inId !== 'nao') {
             inputid.value = idId;
         }
@@ -445,9 +497,18 @@ function abrirModalJsAdm(idId, inId, idNome, inNome, idSobrenome, inSobrenome, i
             })
                 .then(response => response.json())
                 .then(data => {
-
+                    console.log(data)
                     if (data.success) {
-                        window.location.reload()
+                        carregarConteudo('listarAdm')
+                        if (`${addEditDel}` === 'addAdm' || `${addEditDel}` === 'deleteAdm') {
+                            alertSuccess(data.message, '#65B307')
+                            botoes.disabled = false;
+                            document.getElementById(`${formulario}`).reset()
+                        } else if (`${addEditDel}` === 'editAdm') {
+                            alertSuccess(data.message, '#2b58de')
+                        }
+                    } else {
+                        alertError(data.message)
                     }
                     ModalInstacia.hide();
                 })
@@ -462,7 +523,6 @@ function abrirModalJsAdm(idId, inId, idNome, inNome, idSobrenome, inSobrenome, i
         }
         formDados.addEventListener('submit', submitHandler);
 
-
     } else {
         ModalInstacia.hide();
     }
@@ -470,13 +530,31 @@ function abrirModalJsAdm(idId, inId, idNome, inNome, idSobrenome, inSobrenome, i
 }
 
 
-function abrirModalJsTurma(nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+function abrirModalJsTurma(idId, inId, idNumero, inNumero, idNome, inNome, idCodigo, inCodigo, nomeModal, abrirModal = 'A', botao, addEditDel, formulario) {
+
     const formDados = document.getElementById(`${formulario}`)
 
     var botoes = document.getElementById(`${botao}`);
     const ModalInstacia = new bootstrap.Modal(document.getElementById(`${nomeModal}`))
     if (abrirModal === 'A') {
         ModalInstacia.show();
+
+        const inputid = document.getElementById(`${inId}`);
+        if (inId !== 'nao') {
+            inputid.value = idId;
+        }
+        const nome = document.getElementById(`${inNome}`);
+        if (inNome !== 'nao') {
+            nome.value = idNome;
+        }
+        const numero = document.getElementById(`${inNumero}`);
+        if (inNumero !== 'nao') {
+            numero.value = idNumero;
+        }
+        const codigo = document.getElementById(`${inCodigo}`);
+        if (inCodigo !== 'nao') {
+            codigo.value = idCodigo;
+        }
 
         const submitHandler = function (event) {
             event.preventDefault();
@@ -493,9 +571,18 @@ function abrirModalJsTurma(nomeModal, abrirModal = 'A', botao, addEditDel, formu
             })
                 .then(response => response.json())
                 .then(data => {
-
+                    console.log(data)
                     if (data.success) {
-                        window.location.reload()
+                        carregarConteudo('listarTurma')
+                        if (`${addEditDel}` === 'addTurma' || `${addEditDel}` === 'deleteTurma') {
+                            alertSuccess(data.message, '#65B307')
+                            botoes.disabled = false;
+                            document.getElementById(`${formulario}`).reset()
+                        } else if (`${addEditDel}` === 'editTurma') {
+                            alertSuccess(data.message, '#2b58de')
+                        }
+                    } else {
+                        alertError(data.message)
                     }
                     ModalInstacia.hide();
                 })
@@ -509,7 +596,6 @@ function abrirModalJsTurma(nomeModal, abrirModal = 'A', botao, addEditDel, formu
 
         }
         formDados.addEventListener('submit', submitHandler);
-
 
     } else {
         ModalInstacia.hide();
@@ -538,9 +624,9 @@ function deleteGeral(addEditDel, formulario) {
                     // window.location.reload()
                 }
             })
-        // .catch(error => {
-        //     console.error('Erro na requisição:', error);
-        // });
+        .catch(error => {
+            console.error('Erro na requisição:', error);
+        });
 
 
     }
@@ -602,3 +688,38 @@ function addErro() {
         }
     });
 };
+
+function alertSuccess(msg, cor) {
+
+    Toastify({
+        text: `${msg}`,
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: `${cor}`,
+            color: 'white',
+        },
+    }).showToast();
+
+}
+
+function alertError(msg) {
+    Toastify({
+        text: `${msg}`,
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "#F40000",
+            color: 'white',
+        },
+    }).showToast();
+
+}

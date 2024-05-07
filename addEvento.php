@@ -19,7 +19,7 @@ if (isset($Dados) && !empty($Dados)) {
     $retornoInsert = insert8Item('calendario', 'titulo,dataIn,dataEnd,cor,cadastro,idturma,idcurso,comentario', $nome, $dataHoraIn, $dataHoraEnd, $cor, $cadastro,$turma,$curso,$comentario);
 
     if ($retornoInsert > 0) {
-        echo json_encode(['success' => true, 'message' => "Evento <b>$nome</b> cadastrado com sucesso"], JSON_THROW_ON_ERROR);
+        echo json_encode(['success' => true, 'message' => "Evento cadastrado com sucesso"], JSON_THROW_ON_ERROR);
     } else {
         echo json_encode(['success' => false, 'message' => "Evento Não cadastrado! Error Bd"], JSON_THROW_ON_ERROR);
     }

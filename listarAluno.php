@@ -20,7 +20,7 @@
     <tbody>
     <?php
     $cont = 1;
-    $aluno = listarTabela('*', 'aluno');
+    $aluno = listarTabelaSemAtivo('*', 'aluno');
     if ($aluno !== false) {
         foreach ($aluno as $alunoItem) {
             $id = $alunoItem->idaluno;

@@ -11,6 +11,7 @@ define('TITULOSITE','CONFEITARIA');
 define('TEMPOFALHA','15');
 define('TENTATIVAFALHA','3');
 define('DATATIMEATUAL', date("Y-m-d H:i:s"));
+define('DATAATUAL', date("d/m/Y"));
 
 $servidorLocal = true;
 if ($servidorLocal) {

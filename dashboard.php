@@ -23,6 +23,10 @@ if ($_SESSION['idadm']) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.0.96/css/materialdesignicons.min.css"&gt;>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css'>
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.0.96/css/materialdesignicons.min.css">
 </head>
@@ -41,26 +45,26 @@ if ($_SESSION['idadm']) {
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Início</a>
                 </li>
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" href="#">Link</a>-->
-<!--                </li>-->
-<!--                <li class="nav-item dropdown">-->
-<!--                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"-->
-<!--                       aria-expanded="false">-->
-<!--                        Dropdown-->
-<!--                    </a>-->
-<!--                    <ul class="dropdown-menu">-->
-<!--                        <li><a class="dropdown-item" href="#">Action</a></li>-->
-<!--                        <li><a class="dropdown-item" href="#">Another action</a></li>-->
-<!--                        <li>-->
-<!--                            <hr class="dropdown-divider">-->
-<!--                        </li>-->
-<!--                        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-<!--                    </ul>-->
-<!--                </li>-->
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>-->
-<!--                </li>-->
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link" href="#">Link</a>-->
+                <!--                </li>-->
+                <!--                <li class="nav-item dropdown">-->
+                <!--                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"-->
+                <!--                       aria-expanded="false">-->
+                <!--                        Dropdown-->
+                <!--                    </a>-->
+                <!--                    <ul class="dropdown-menu">-->
+                <!--                        <li><a class="dropdown-item" href="#">Action</a></li>-->
+                <!--                        <li><a class="dropdown-item" href="#">Another action</a></li>-->
+                <!--                        <li>-->
+                <!--                            <hr class="dropdown-divider">-->
+                <!--                        </li>-->
+                <!--                        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+                <!--                    </ul>-->
+                <!--                </li>-->
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>-->
+                <!--                </li>-->
             </ul>
             <button type="button" name="logout" id="logout" class="btn btn-danger" onclick="redireciona('logout.php')">
                 Sair
@@ -73,12 +77,13 @@ if ($_SESSION['idadm']) {
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-2 verdeCoop tamanhoBarraLateral fs-4">
-            <div class="mt-3 mb-2 pointerCursor" onclick="carregarConteudo('listarCalendario')">Calendário</div>
-            <div class="mt-3 mb-2 pointerCursor" onclick="carregarConteudo('listarAluno')">Alunos</div>
-            <div class="mt-3 mb-2 pointerCursor" onclick="carregarConteudo('listarCurso')">Cursos</div>
-            <div class="mt-3 mb-2 pointerCursor" onclick="carregarConteudo('listarTurma')">Turmas</div>
-            <div class="mt-3 mb-2 pointerCursor" onclick="carregarConteudo('listarAdm')">Administradores</div>
-
+            <div class="inputii" style="background-color: #048149">
+                <div class="mt-3 mb-2 value" onclick="carregarConteudo('listarCalendario')"><i class="fas fa-calendar-alt"></i> Calendário</div>
+                <div class="mt-3 mb-2 value" onclick="carregarConteudo('listarAluno')"><i class='fas fa-user-graduate'></i> Alunos</div>
+                <div class="mt-3 mb-2 value" onclick="carregarConteudo('listarCurso')"><i class="fas fa-chalkboard"></i> Cursos</div>
+                <div class="mt-3 mb-2 value" onclick="carregarConteudo('listarTurma')"><i class="fas fa-chalkboard-teacher"></i> Turmas</div>
+                <div class="mt-3 mb-2 value" onclick="carregarConteudo('listarAdm')"><i class="fas fa-address-card"></i> Administradores</div>
+            </div>
         </div>
         <div class="col-lg-10 mt-3">
             <div id="show"></div>
@@ -140,7 +145,8 @@ if ($_SESSION['idadm']) {
                         </div>
                         <div class="col-4">
                             <label for="cadCelularAluno" class="label-control">Celular:</label>
-                            <input type="text" name="cadCelularAluno" id="cadCelularAluno" class="form-control telefoneBR"
+                            <input type="text" name="cadCelularAluno" id="cadCelularAluno"
+                                   class="form-control telefoneBR"
                                    required="required">
                         </div>
                     </div>
@@ -222,7 +228,8 @@ if ($_SESSION['idadm']) {
                         </div>
                         <div class="col-4">
                             <label for="editCelularAluno" class="label-control">Celular:</label>
-                            <input type="text" name="editCelularAluno" id="editCelularAluno" class="form-control telefoneBR"
+                            <input type="text" name="editCelularAluno" id="editCelularAluno"
+                                   class="form-control telefoneBR"
                                    required="required">
                         </div>
                     </div>
@@ -431,7 +438,8 @@ if ($_SESSION['idadm']) {
                     </div>
                     <div class="">
                         <p class="fs-3">Tem certeza que deseja deletar esse administrador?</p>
-                        <p><b>Realizar essa ação excluirá todos os registros desse administrador, não havendo possibilidade
+                        <p><b>Realizar essa ação excluirá todos os registros desse administrador, não havendo
+                                possibilidade
                                 de recuperação!</b></p>
                     </div>
                     <div>
@@ -556,7 +564,7 @@ if ($_SESSION['idadm']) {
             </div>
             <form action="" method="post" name="frmCadTurma" id="frmCadTurma">
                 <div class="modal-body">
-                    <div >
+                    <div>
                         <label for="cadNumeroTurma" class="label-control">Número da turma:</label>
                         <input type="text" name="cadNumeroTurma" id="cadNumeroTurma" required="required"
                                class="form-control">
@@ -644,7 +652,9 @@ if ($_SESSION['idadm']) {
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="fecharModal('listarTurma')">Fechar</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                            onclick="fecharModal('listarTurma')">Fechar
+                    </button>
                     <button type="submit" class="btn btn-danger" id="btnDeleteAdm">Deletar</button>
                 </div>
             </form>

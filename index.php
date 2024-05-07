@@ -29,21 +29,21 @@ include_once("./bodyy.php");
         $senha = criarSenhaHash("12345678");
         ?>
         <div class="user-box">
-            <input type="email" name="email" id="email" autocomplete="off" required="required">
+            <input type="email" name="email" id="email" autocomplete="off" required="required" class="m-0">
             <label>Email <span class="mdi mdi-email"></span></label>
         </div>
         <br>
         <div class="row">
-            <div class="col-11">
-                <div class="user-box">
-                    <input type="password" name="senha" id="senha" autocomplete="off" required="required">
+            <div class="col-11 ">
+                <div class="user-box ">
+                    <input type="password" name="senha" id="senha" autocomplete="off" required="required" class="m-0">
                     <label>Senha <span class="mdi mdi-key"></span></label>
                 </div>
             </div>
-            <div class="col-1">
+            <div class="col-1 d-flex justify-content-center align-items-center mt-0 p-0">
                 <button id="iconeOlho" type="button"
                         style="background: transparent; border: transparent; box-shadow: transparent"
-                        class="mdi mdi-eye sem_hover" onclick="mostrarsenha();"></button>
+                        class="mdi mdi-eye sem_hover mt-0 p-0" onclick="mostrarsenha();"></button>
             </div>
         </div>
         <div class="erroBonito p-1 text-center" role="alert" id="alertlog" style="display: none;">

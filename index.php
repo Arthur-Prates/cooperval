@@ -2,7 +2,7 @@
 include_once("config/constantes.php");
 include_once("config/conexao.php");
 include_once("func/funcoes.php");
-//echo criarSenhaHash('12345678')
+// echo criarSenhaHash('12345678')
 ?>
 
 <!doctype html>

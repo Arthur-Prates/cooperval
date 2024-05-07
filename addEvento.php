@@ -11,11 +11,12 @@ if (isset($Dados) && !empty($Dados)) {
     $dataHoraIn = isset($Dados['dataIn']) ? addslashes($Dados['dataIn']) : '';
     $dataHoraEnd = isset($Dados['dataEnd']) ? addslashes($Dados['dataEnd']) : '';
     $cor = isset($Dados['cor']) ? addslashes($Dados['cor']) : '';
-
+    $dataHoraIn = dataHoraGlobalGAMBIARRA($dataHoraIn);
+   $dataHoraEnd = dataHoraGlobalGAMBIARRA($dataHoraEnd);
    ;
 
     $cadastro = DATATIMEATUAL;
-    $retornoInsert = insert8Item('calendario', 'titulo,dataIn,dataEnd,cor,cadastro,idturma,idcurso,comentario', $nome,  dataHoraGlobal($dataHoraIn),  dataHoraGlobal($dataHoraEnd), $cor, $cadastro,$turma,$curso,$comentario);
+    $retornoInsert = insert8Item('calendario', 'titulo,dataIn,dataEnd,cor,cadastro,idturma,idcurso,comentario', $nome, $dataHoraIn, $dataHoraEnd, $cor, $cadastro,$turma,$curso,$comentario);
 
     if ($retornoInsert > 0) {
         echo json_encode(['success' => true, 'message' => "Evento <b>$nome</b> cadastrado com sucesso"], JSON_THROW_ON_ERROR);

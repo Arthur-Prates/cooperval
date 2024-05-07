@@ -1,3 +1,16 @@
+body{
+    background: linear-gradient(#187F00, #000000);
+    padding: 0px;
+    margin: 0px;
+}
+
+#gradient
+{
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+}
 body {
     margin: 0;
     padding: 0;
@@ -74,7 +87,7 @@ body {
 }
 
 .tamanhoBarraLateral{
-    min-height: 100vh;
+    height: 850px;
     border-radius: 0px 0px 40px 0px;
 }
 
@@ -258,87 +271,3 @@ body {
     margin-top: 18px !important;
     padding-left: 0px !important;
 }
-
-.acertoBonito{
-    color: #ffffff;
-    background-color: rgba(27, 126, 0, 0.55);
-    border: #259400 1px solid;
-}
-
-.erroBonito{
-    color: #ffffff;
-    background-color: rgba(126, 0, 0, 0.55);
-    border: #940000 1px solid;
-}
-<<<<<<< HEAD
-.inputii {
-    display: flex;
-    flex-direction: column;
-    background-color: #000000;
-    justify-content: center;
-    border-radius: 5px;
-    position: relative;
-    /*top: 0;*/
-    transform: translateY(50%);
-}
-
-.value {
-    background-color: transparent;
-    border: none;
-    padding: 10px;
-    color: white;
-    display: flex;
-    position: relative;
-    gap: 5px;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-.value:not(:active):hover,
-.value:focus {
-    background-color: #ffffff;
-    color: black;
-}
-
-.value:focus,
-.value:active {
-
-    outline: none;
-    background-color: #b4b4b4;
-    color: black;
-}
-
-.value::before {
-    content: "";
-    position: absolute;
-    top: 5px;
-    left: -10px;
-    width: 5px;
-    height: 80%;
-    background-color: #ffffff;
-    border-radius: 5px;
-    opacity: 0;
-}
-
-.value:focus::before,
-.value:active::before {
-    opacity: 1;
-}
-
-.value svg {
-    width: 15px
-}
-
-.inputii:hover > :not(.value:hover) {
-    transition: 300ms;
-    filter: blur(1px);
-    transform: scale(0.95, 0.95);
-}
-=======
-
-.inputInvisivel{
-    background: transparent !important;
-    border: none !important;
-    cursor:default !important;
-}
->>>>>>> b173d5ec029cf0479cc02bcf0c488312be241dbf

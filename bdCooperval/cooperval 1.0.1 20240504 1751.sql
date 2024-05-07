@@ -39,7 +39,7 @@ CREATE TABLE `adm` (
   `alteracao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `ativo` char(1) NOT NULL DEFAULT 'A',
   PRIMARY KEY (`idadm`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `adm`
@@ -47,7 +47,8 @@ CREATE TABLE `adm` (
 
 /*!40000 ALTER TABLE `adm` DISABLE KEYS */;
 INSERT INTO `adm` (`idadm`,`nome`,`sobrenome`,`nascimento`,`celular`,`cpf`,`email`,`senha`,`cadastro`,`alteracao`,`ativo`) VALUES 
- (1,'Marco','Nobre','2003-05-23','(33) 98866-1359','12345678977','marco@gmail.com','123456789','0000-00-00 00:00:00','2024-05-04 17:21:08','A');
+ (1,'Marco','Nobre','2003-05-23','(33) 98866-1359','12345678977','marco@gmail.com','$2y$12$S8Cxvs7FVm2h7YECziyLC.1.3kcwnEayB3GZfTM.1f9RGt/Vhyc/O','0000-00-00 00:00:00','2024-05-06 13:14:04','A'),
+ (2,'Arthur','Prates','0001-01-01','(20) 94002-8922','11111111111','ademir@gmail.com','$2y$12$S8Cxvs7FVm2h7YECziyLC.1.3kcwnEayB3GZfTM.1f9RGt/Vhyc/O','0000-00-00 00:00:00','2024-05-06 13:14:04','A');
 /*!40000 ALTER TABLE `adm` ENABLE KEYS */;
 
 
@@ -135,25 +136,29 @@ DROP TABLE IF EXISTS `calendario`;
 CREATE TABLE `calendario` (
   `idcalendario` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `idcurso` int(10) unsigned NOT NULL DEFAULT 0,
+  `idturma` int(10) unsigned NOT NULL DEFAULT 0,
   `titulo` varchar(200) NOT NULL,
   `cor` varchar(20) NOT NULL,
   `dataIn` varchar(40) NOT NULL,
   `dataEnd` varchar(40) NOT NULL,
+  `comentario` varchar(255) DEFAULT NULL,
   `cadastro` datetime NOT NULL,
   `alteracao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `ativo` char(1) NOT NULL DEFAULT 'A',
-  PRIMARY KEY (`idcalendario`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`idcalendario`,`idcurso`,`idturma`),
+  KEY `FK_calendario_turma` (`idturma`),
+  KEY `FK_calendario_curso` (`idcurso`),
+  CONSTRAINT `FK_calendario_curso` FOREIGN KEY (`idcurso`) REFERENCES `curso` (`idcurso`),
+  CONSTRAINT `FK_calendario_turma` FOREIGN KEY (`idturma`) REFERENCES `turma` (`idturma`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `calendario`
 --
 
 /*!40000 ALTER TABLE `calendario` DISABLE KEYS */;
-INSERT INTO `calendario` (`idcalendario`,`idcurso`,`titulo`,`cor`,`dataIn`,`dataEnd`,`cadastro`,`alteracao`,`ativo`) VALUES 
- (6,0,'','blue','2024-05-04T16:03:07','2024-05-05T16:03:07','2024-05-04 16:03:18','2024-05-04 16:03:18','A'),
- (7,0,'','purple','2024-05-04T16:21:57','2024-05-14T16:21:57','2024-05-04 16:22:53','2024-05-04 16:23:20','A'),
- (8,0,'aaaaaaaaaa','green','2024-05-04T17:03:15','2024-05-04T22:08:15','2024-05-04 17:03:26','2024-05-04 17:03:26','A');
+INSERT INTO `calendario` (`idcalendario`,`idcurso`,`idturma`,`titulo`,`cor`,`dataIn`,`dataEnd`,`comentario`,`cadastro`,`alteracao`,`ativo`) VALUES 
+ (12,1,1,'dasdf','purple','2024-05-07T13:12','2024-05-26T13:12','yyy','2024-05-07 13:12:15','2024-05-07 13:12:36','A');
 /*!40000 ALTER TABLE `calendario` ENABLE KEYS */;
 
 

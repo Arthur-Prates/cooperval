@@ -2,14 +2,15 @@
 include_once("config/constantes.php");
 include_once("config/conexao.php");
 include_once("func/funcoes.php");
-// echo criarSenhaHash('12345678')
+include_once("./bodyy.php");
+
 ?>
 
 <!doctype html>
 <html lang="pt-br">
 
 <head>
-    <title>Title</title>
+    <title>Login</title>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="./css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -19,11 +20,14 @@ include_once("func/funcoes.php");
           href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.0.96/css/materialdesignicons.min.css">
 </head>
 
-<body class="bodyLogin">
+<body>
 
 <div class="login-box">
     <h2 class="fontee">LOGIN <span class="mdi mdi-login"></span></h2>
     <form method="post" name="frmLogin" id="frmLogin">
+        <?php
+        $senha = criarSenhaHash("12345678");
+        ?>
         <div class="user-box">
             <input type="email" name="email" id="email" autocomplete="off" required="required">
             <label>Email <span class="mdi mdi-email"></span></label>
@@ -54,12 +58,12 @@ include_once("func/funcoes.php");
         </button>
     </form>
     <br>
-    <div class="text-center text-white">
+    <b><div class="text-center text-white">
         <?php
         date_default_timezone_set('America/Sao_Paulo');
         echo date('H:i');
         ?>
-    </div>
+        </div></b>
 </div>
 
 

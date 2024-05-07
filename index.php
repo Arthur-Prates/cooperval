@@ -61,7 +61,7 @@ include_once("./bodyy.php");
     <b><div class="text-center text-white">
         <?php
         date_default_timezone_set('America/Sao_Paulo');
-        echo date('H:i:s');
+        echo date('H:i');
         ?>
         </div></b>
 </div>

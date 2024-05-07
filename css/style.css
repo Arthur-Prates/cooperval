@@ -270,3 +270,9 @@ body {
     background-color: rgba(126, 0, 0, 0.55);
     border: #940000 1px solid;
 }
+
+.inputInvisivel{
+    background: transparent !important;
+    border: none !important;
+    cursor:default !important;
+}

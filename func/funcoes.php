@@ -110,6 +110,28 @@ function listarTabelaInnerJoinOrdenada($campos, $tabela1, $tabela2, $id1, $id2, 
     }
     $conn = null;
 }
+function listarTabelaTurmaGrafico($id)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("SELECT count(*) as soma FROM aluno where idturma = $id and ativo = 'A' ");
+        //        $sqlLista->bindValue(1, $campoParametro, PDO::PARAM_INT);
+        $sqlLista->execute();
+        $conn->commit();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        }
+        return False;
+
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    }
+    $conn = null;
+}
+
 
 function listarTabelaInnerJoinTriploOrdenada($campos, $tabelaA1, $tabelaB2, $tabelaD3, $idA1, $idB2, $idA3, $idD4, $ordem, $tipoOrdem)
 {

@@ -92,10 +92,97 @@ if ($_SESSION['idadm']) {
         </div>
         <div class="col-lg-10 mt-3">
             <div id="show">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-sm-12 col-lg-8">
+                        <div id='calendar'></div>
 
-                <div id='calendar'></div>
+                    </div>
+                    <div class="col-12 col-md-12 col-sm-12 col-lg-4 d-flex justify-content-center align-items-center">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div>
             </div>
 
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <?php
+            $contarturmas = 0;
+            $while = 0;
+            ?>
+            <script>
+
+                const ctx = document.getElementById('myChart');
+
+                new Chart(ctx, {
+                    type: 'doughnut',
+
+                    data: {
+                        labels: [  <?php
+
+                            $turmaCont = listarTabela('*', 'turma');
+                            if ($turmaCont !== false) {
+                            foreach ($turmaCont as $item) {
+                            $nome = $item->nomeTurma;
+                            $contarturmas = $contarturmas + 1
+                            ?>
+                            '<?php echo $nome?>',
+                            <?php
+                            }
+
+                            }
+
+                            ?>],
+                        datasets: [{
+                            backgroundColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(54, 162, 235)',
+                                'rgb(255, 205, 86)',
+                                'rgb(40, 180, 99)',
+                                'rgb(255, 87, 51)',
+                                'rgb(93, 109, 126)',
+                                'rgb(23, 165, 137)',
+                                'rgb(142, 68, 173)'
+                            ],
+                            label: '#Aluno(s)',
+                            data: [ <?php
+                                while ($while < $contarturmas){
+
+                                $while = $while + 1;
+
+                                $turma = listarTabelaTurmaGrafico($while);
+                                if ($turma !== false) {
+                                foreach ($turma as $item) {
+                                $soma = $item->soma;
+
+                                ?>
+                                '<?php echo $soma?>',
+                                <?php
+                                }
+                                }    }
+                                ?> ],
+                            borderWidth: 1,
+                            // borderColor: '#000000',
+
+                        }]
+                    },
+
+
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        },
+                        plugins: {
+                            subtitle: {
+                                display: true,
+                                text: 'ALUNOS CADASTRADOS POR TURMAS'
+                            }
+                        }
+                    }
+                });
+            </script>
             <!-- Modal Add Evento-->
             <div class="modal fade" id="cadastrarEvento" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">

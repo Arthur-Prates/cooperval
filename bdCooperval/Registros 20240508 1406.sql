@@ -116,7 +116,7 @@ CREATE TABLE `aluno` (
   PRIMARY KEY (`idaluno`,`idturma`),
   KEY `FK_aluno_turma` (`idturma`),
   CONSTRAINT `FK_aluno_turma` FOREIGN KEY (`idturma`) REFERENCES `turma` (`idturma`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `aluno`
@@ -124,11 +124,11 @@ CREATE TABLE `aluno` (
 
 /*!40000 ALTER TABLE `aluno` DISABLE KEYS */;
 INSERT INTO `aluno` (`idaluno`,`idturma`,`nomeAluno`,`sobrenomeAluno`,`nascimentoAluno`,`cpfAluno`,`emailAluno`,`celularAluno`,`cadastro`,`alteracao`,`ativo`) VALUES 
- (1,1,'Luciano','Coelho','2000-01-01','12345678977','luciano@gmail.com','32544879844','0000-00-00 00:00:00','2024-05-04 17:35:09','A'),
- (2,1,'Fernando','Lopes','2000-05-02','345.353.453-45','Fernado@outlook.com','(33) 9543-5345','2024-05-08 14:00:28','2024-05-08 14:00:28','A'),
+ (1,2,'Luciano','Coelho','2000-01-01','12345678977','luciano@gmail.com','32544879844','0000-00-00 00:00:00','2024-05-08 15:41:52','A'),
+ (2,2,'Fernando','Lopes','2000-05-02','345.353.453-45','Fernado@outlook.com','(33) 9543-5345','2024-05-08 14:00:28','2024-05-08 15:55:09','A'),
  (3,1,'Marco','Braga','1984-05-15','143.566.346-43','Marco@hotmail.com','(23) 9987-5532','2024-05-08 14:01:22','2024-05-08 14:01:22','A'),
- (4,1,'Junior','Rodrigues Campos','2000-09-20','124.135.622-36','Junior@gmail.com','(21) 9999-6543','2024-05-08 14:02:11','2024-05-08 14:02:11','A'),
- (5,1,'Ruan','Santos','2003-03-20','598.132.164-81','Ruan@gmail.com','(45) 9911-8612','2024-05-08 14:02:11','2024-05-08 14:02:55','A');
+ (4,2,'Junior','Rodrigues Campos','2000-09-20','124.135.622-36','Junior@gmail.com','(21) 9999-6543','2024-05-08 14:02:11','2024-05-08 15:50:54','A'),
+ (5,3,'Ruan','Santos','2003-03-20','598.132.164-81','Ruan@gmail.com','(45) 9911-8612','2024-05-08 14:02:11','2024-05-08 15:56:15','A');
 /*!40000 ALTER TABLE `aluno` ENABLE KEYS */;
 
 
@@ -154,13 +154,18 @@ CREATE TABLE `calendario` (
   KEY `FK_calendario_curso` (`idcurso`),
   CONSTRAINT `FK_calendario_curso` FOREIGN KEY (`idcurso`) REFERENCES `curso` (`idcurso`),
   CONSTRAINT `FK_calendario_turma` FOREIGN KEY (`idturma`) REFERENCES `turma` (`idturma`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `calendario`
 --
 
 /*!40000 ALTER TABLE `calendario` DISABLE KEYS */;
+INSERT INTO `calendario` (`idcalendario`,`idcurso`,`idturma`,`titulo`,`cor`,`dataIn`,`dataEnd`,`comentario`,`cadastro`,`alteracao`,`ativo`) VALUES 
+ (17,1,2,'Jandaia/Saude Mental','purple','2024-05-08T09:00','2024-05-08T18:00','Nenhum comentário adicionado!','2024-05-08 16:25:21','2024-05-08 16:32:54','A'),
+ (18,2,1,'Bom Sucesso/ Motoristas','red','2024-05-15T09:00','2024-05-16T18:00','URGENTE','2024-05-08 16:26:26','2024-05-08 16:33:18','A'),
+ (19,3,3,'Marumbi/Info','green','2024-05-24T09:00','2024-05-24T18:00','Nenhum comentário adicionado!','2024-05-08 16:27:55','2024-05-08 16:31:12','A'),
+ (20,8,3,'Marumbi/Ed.Financeira','black','2024-05-27T09:00','2024-05-28T18:00','Nenhum comentário adicionado!','2024-05-08 16:29:04','2024-05-08 16:31:53','A');
 /*!40000 ALTER TABLE `calendario` ENABLE KEYS */;
 
 
@@ -177,7 +182,7 @@ CREATE TABLE `curso` (
   `alteracao` timestamp NULL DEFAULT NULL,
   `ativo` char(1) DEFAULT 'A',
   PRIMARY KEY (`idcurso`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `curso`
@@ -185,9 +190,10 @@ CREATE TABLE `curso` (
 
 /*!40000 ALTER TABLE `curso` DISABLE KEYS */;
 INSERT INTO `curso` (`idcurso`,`nomeCurso`,`localCurso`,`cadastro`,`alteracao`,`ativo`) VALUES 
- (1,'Administração de Recursos','Associação',NULL,NULL,'A'),
- (2,' Operador de caldeira','Caldeira','2024-05-08 13:52:46',NULL,'A'),
- (3,'Operador de Maquinário Pesado','Pátio','2024-05-08 13:53:06',NULL,'A');
+ (1,'Saúde Mental','Associval',NULL,NULL,'A'),
+ (2,'Motoristas','Logística','2024-05-08 13:52:46',NULL,'A'),
+ (3,'Informática','RH','2024-05-08 13:53:06',NULL,'A'),
+ (8,'Educação Financeira','Caldeiraria','2024-05-08 16:29:28',NULL,'A');
 /*!40000 ALTER TABLE `curso` ENABLE KEYS */;
 
 
@@ -205,7 +211,7 @@ CREATE TABLE `turma` (
   `alteracao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `ativo` char(1) NOT NULL DEFAULT 'A',
   PRIMARY KEY (`idturma`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `turma`
@@ -213,8 +219,9 @@ CREATE TABLE `turma` (
 
 /*!40000 ALTER TABLE `turma` DISABLE KEYS */;
 INSERT INTO `turma` (`idturma`,`numeroTurma`,`nomeTurma`,`codigoTurma`,`cadastro`,`alteracao`,`ativo`) VALUES 
- (1,'Turma 03','Manutencao','0001000','0000-00-00 00:00:00','2024-05-08 13:20:17','A'),
- (2,'Turma 105','Desenvolvimento de Enxadas','1230005','2024-05-08 13:21:07','2024-05-08 13:21:07','A');
+ (1,'Turma 03','MOTORISTAS Bom Sucesso','1007','0000-00-00 00:00:00','2024-05-08 16:20:49','A'),
+ (2,'Turma 02','MOTORISTAS Jandaía do Sul','1009','2024-05-08 13:21:07','2024-05-08 16:21:22','A'),
+ (3,'Turma 01','MOTORISTAS Marumbi','1018','2024-05-08 15:55:48','2024-05-08 16:21:47','A');
 /*!40000 ALTER TABLE `turma` ENABLE KEYS */;
 
 

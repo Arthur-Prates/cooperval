@@ -1,0 +1,18 @@
+
+A empresa COOPERVAL está com dificuldades no momento do agendamento dos cursos nas respectivas turmas e locais.
+Como tudo  é feito manualmente, em alguns momentos pode haver divergências e ai entra a COBACK,onde trouxemos a solução prática.
+criamos um sistema onde é possível fazer os cadastros de turmas, cursos, alunos, além de poder fazer o agendamento das turmas para cada sala.
+
+Em nossa primeira tela temos um calendário onde possibilita a facil vialização do próximos eventos, trazendo clareza visual a todos, incluimos tambem, outras páginas muito importantes, como:
+
+- Agendamento
+- Alunos
+- Cursos
+- Turmas
+- Administradores
+
+
+Onde nessas paginas, é possivel ter total controle sobre os dados da empresa, podendo cadastrar,editar e até mesmo excluir se for necessário.
+
+Trazemos para vocês tambem, uma funcionalidade onde o aluno e funcionário poderia ser avisado de seu compromisso via EMAIL,SMS e Whatsapp automáticamente, economizando um tempo gigantesco e aquele estresse.
+

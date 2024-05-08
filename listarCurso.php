@@ -1,11 +1,14 @@
 <div class="card text-center">
     <div class="card-header">
-        #Curso(s)
-        <div class="d-flex float-end align-items-center">
-            <button class="btn btn-sm btn-secondary"
-                    onclick="abrirModalJsCurso('nao', 'nao', 'nao', 'nao', 'nao', 'nao','cadCurso','A','btnCadCurso','addCurso','frmCadCurso')">
-                Cadastrar
-            </button>
+        <div class="d-flex justify-content-between align-items-center">
+            <p class="fs-3">#Curso(s)</p>
+
+            <div class="d-flex float-end align-items-center">
+                <button class="btn btn-sm btn-secondary"
+                        onclick="abrirModalJsCurso('nao', 'nao', 'nao', 'nao', 'nao', 'nao','cadCurso','A','btnCadCurso','addCurso','frmCadCurso')">
+                    Cadastrar
+                </button>
+            </div>
         </div>
     </div>
     <div class="card-body">
@@ -43,11 +46,17 @@
                         <td>
                             <?php if ($ativo === 'A') {
                                 ?>
-                                <button class="btn btn-danger btn-sm" onclick="ativarDesativar('desativarCurso.php','<?php echo $id?>','listarCurso')">Desativar</button>
+                                <button class="btn btn-danger btn-sm"
+                                        onclick="ativarDesativar('desativarCurso.php','<?php echo $id ?>','listarCurso')">
+                                    Desativar
+                                </button>
                                 <?php
                             } else {
                                 ?>
-                                <button class="btn btn-success btn-sm" onclick="ativarDesativar('ativarCurso.php','<?php echo $id?>','listarCurso')">Ativar</button>
+                                <button class="btn btn-success btn-sm"
+                                        onclick="ativarDesativar('ativarCurso.php','<?php echo $id ?>','listarCurso')">
+                                    Ativar
+                                </button>
                                 <?php
                             }
                             ?>
@@ -57,7 +66,7 @@
                             </button>
                             <button class="btn btn-danger btn-sm"
                                     onclick="abrirModalJsCurso('<?php echo $id ?>', 'idDeleteCurso', 'nao', 'nao', 'nao', 'nao','deleteCurso','A','btnDeleteCurso','deleteCurso','frmDeleteCurso')">
-                                Deletar
+                                <span class="mdi mdi-trash-can"></span>
                             </button>
                         </td>
                     </tr>
@@ -75,9 +84,9 @@
 
     </div>
     <div class="card-footer text-body-secondary">
-       <?php
-       echo DATAATUAL
-       ?>
+        <?php
+        echo DATAATUAL
+        ?>
     </div>
 </div>
 

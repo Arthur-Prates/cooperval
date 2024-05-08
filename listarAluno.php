@@ -1,13 +1,14 @@
-
-
 <div class="card text-center">
     <div class="card-header">
-        #Aluno(s)
-        <div class="d-flex float-end align-items-center">
-            <button class="btn btn-sm btn-secondary"
-                    onclick="abrirModalJsAluno('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','cadAluno','A','btnCadAluno','addAluno','frmCadAluno')">
-                Cadastrar
-            </button>
+        <div class="d-flex justify-content-between align-items-center">
+            <p class="fs-3">#Aluno(s)</p>
+
+            <div class="d-flex float-end align-items-center">
+                <button class="btn btn-sm btn-secondary"
+                        onclick="abrirModalJsAluno('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','cadAluno','A','btnCadAluno','addAluno','frmCadAluno')">
+                    Cadastrar
+                </button>
+            </div>
         </div>
     </div>
     <div class="card-body">
@@ -25,7 +26,7 @@
             <tbody>
             <?php
             $cont = 1;
-            $aluno = listarTabela('*', 'aluno');
+            $aluno = listarTabelaInnerJoinOrdenada('*', 'aluno', 'turma', 'idturma', 'idturma', 'idaluno', 'ASC');
             if ($aluno !== false) {
                 foreach ($aluno as $alunoItem) {
                     $id = $alunoItem->idaluno;
@@ -36,6 +37,7 @@
                     $celular = $alunoItem->celularAluno;
                     $turma = $alunoItem->idturma;
                     $cpf = $alunoItem->cpfAluno;
+                    $nomeTurma = $alunoItem->nomeTurma;
 
                     ?>
                     <tr class="table-secondary">
@@ -45,14 +47,17 @@
                         <td><?php echo $nascimento ?></td>
                         <td><?php echo $celular ?></td>
                         <td>
-                            <button class="btn btn-success btn-sm">Ver mais</button>
+                            <button class="btn btn-success btn-sm"
+                                    onclick="abrirModalJsAluno('<?php echo $id ?>','idVermaisAluno','<?php echo $nome ?>','vermaisNomeAluno','<?php echo $sobrenome ?>','vermaisSobrenomeAluno','<?php echo $nomeTurma ?>','vermaisTurmaDoAluno','<?php echo $email ?>','vermaisEmailAluno','<?php echo $celular ?>','vermaisCelularAluno','<?php echo $cpf ?>','vermaisCpfAluno','<?php echo $nascimento ?>','vermaisNascimentoAluno','vermaisAluno','A','btnVermaisAluno','vermaisAluno','frmVermaisAluno')">
+                                Ver mais
+                            </button>
                             <button class="btn btn-primary btn-sm"
-                                    onclick="abrirModalJsAluno('<?php echo $id?>','idEditAluno','<?php echo $nome?>','editNomeAluno','<?php echo $sobrenome?>','editSobrenomeAluno','<?php echo $turma?>','editTurmaDoAluno','<?php echo $email?>','editEmailAluno','<?php echo $celular?>','editCelularAluno','<?php echo $cpf?>','editCpfAluno','<?php echo $nascimento?>','editNascimentoAluno','editAluno','A','btnEditAluno','editAluno','frmEditAluno')">
+                                    onclick="abrirModalJsAluno('<?php echo $id ?>','idEditAluno','<?php echo $nome ?>','editNomeAluno','<?php echo $sobrenome ?>','editSobrenomeAluno','<?php echo $turma ?>','editTurmaDoAluno','<?php echo $email ?>','editEmailAluno','<?php echo $celular ?>','editCelularAluno','<?php echo $cpf ?>','editCpfAluno','<?php echo $nascimento ?>','editNascimentoAluno','editAluno','A','btnEditAluno','editAluno','frmEditAluno')">
                                 Alterar
                             </button>
                             <button class="btn btn-danger btn-sm"
-                                    onclick="abrirModalJsAluno('<?php echo $id?>','idDeleteAluno','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','deleteAluno','A','btnDeleteAluno','deleteAluno','frmDeleteAluno')">
-                                Deletar
+                                    onclick="abrirModalJsAluno('<?php echo $id ?>','idDeleteAluno','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','deleteAluno','A','btnDeleteAluno','deleteAluno','frmDeleteAluno')">
+                                <span class="mdi mdi-trash-can"></span>
                             </button>
                         </td>
                     </tr>
@@ -69,6 +74,6 @@
         </table>
     </div>
     <div class="card-footer text-body-secondary">
-        <?php echo DATAATUAL?>
+        <?php echo DATAATUAL ?>
     </div>
 </div>

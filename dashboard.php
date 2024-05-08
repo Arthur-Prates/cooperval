@@ -18,7 +18,7 @@ if ($_SESSION['idadm']) {
 <html lang="pt-br">
 
 <head>
-    <title>Title</title>
+    <title>Cooperval</title>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="./css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -72,8 +72,9 @@ if ($_SESSION['idadm']) {
     <div class="row">
         <div class="col-lg-2 verdeCoop tamanhoBarraLateral fs-4">
             <div class="inputii" style="background-color: #048149">
+                <div class="mt-3 mb-2 value" onclick="window.location.reload()">Calendário</div>
                 <div class="mt-3 mb-2 value" onclick="carregarConteudo('listarCalendario')"><i
-                            class="fas fa-calendar-alt"></i> Calendário
+                            class="fas fa-calendar-alt"></i> Agendamento
                 </div>
                 <div class="mt-3 mb-2 value" onclick="carregarConteudo('listarAluno')"><i
                             class='fas fa-user-graduate'></i> Alunos
@@ -111,13 +112,13 @@ if ($_SESSION['idadm']) {
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Título</span>
                                     <input type="text" class="form-control" placeholder="Título" aria-label="Título"
-                                           id="titulo" name="titulo">
+                                           id="titulo" name="titulo" required="required">
                                 </div>
                                 <div class="input-group mb-3">
 
                                     <span class="input-group-text">Turma</span>
                                     <select class="form-select" aria-label="Default select example" id="turma"
-                                            name="turma">
+                                            name="turma" required="required">
                                         <?php
                                         $turmas = listarTabela('*', 'turma');
                                         foreach ($turmas as $turma) {
@@ -136,7 +137,7 @@ if ($_SESSION['idadm']) {
 
                                     <span class="input-group-text">Curso</span>
                                     <select class="form-select" aria-label="Default select example" id="curso"
-                                            name="curso">
+                                            name="curso" required="required">
                                         <?php
                                         $cursos = listarTabela('*', 'curso');
                                         foreach ($cursos as $item) {
@@ -398,27 +399,37 @@ if ($_SESSION['idadm']) {
                         },
                         locale: 'pt-br',
                         events: [ //aqui fica os eventos q aparece no calendário
+                            {
+                                title: 'fim do A.C.',
+                                start: '0001-01-01T10:00:00',
+                                end: '0001-01-01T10:00:00',
+                                backgroundColor: 'blue',
+                                borderColor: 'blue',
+
+                            },
                             <?php
                             $vari = listarTabela('*', 'calendario');
-                            foreach ($vari as $item) {
+                            if ($vari !== false) {
 
-                                $id = $item->idcalendario;
-                                $titulo = $item->titulo;
-                                $dataInicio = $item->dataIn;
-                                $dataFinal = $item->dataEnd;
-                                $cor = $item->cor;
-                                echo "
+                                foreach ($vari as $item) {
+
+                                    $id = $item->idcalendario;
+                                    $titulo = $item->titulo;
+                                    $dataInicio = $item->dataIn;
+                                    $dataFinal = $item->dataEnd;
+                                    $cor = $item->cor;
+                                    echo "
                 {
                     title: '$titulo',
                     start: '$dataInicio',
                     end: '$dataFinal',
                     backgroundColor: '$cor',
                     borderColor: '$cor',
-                    
-                    
-                },";
-                            }
 
+
+                },";
+                                }
+                            }
                             ?>
 
 
@@ -445,12 +456,87 @@ if ($_SESSION['idadm']) {
 </div>
 
 
+<!--Modal de ver mais de alunos-->
+<div class="modal fade" id="vermaisAluno" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background: #1E2B37;color: white">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Ver mais</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="post" name="frmVermaisAluno" id="frmVermaisAluno">
+                <div class="modal-body">
+                    <div>
+                        <input type="hidden" id="idVermaisAluno" name="idVermaisAluno">
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row text-center">
+                                <div class="col-6">
+                                    <h3 for="vermaisNomeAluno" class="label-control">Nome:</h3>
+                                    <input type="text" name="vermaisNomeAluno" id="vermaisNomeAluno"
+                                           class="form-control text-center"
+                                           required="required" style='background:transparent; border:none;' disabled>
+                                </div>
+                                <div class="col-6 text-center">
+                                    <h3 for="vermaisSobrenomeAluno" class="label-control">Sobrenome:</h3>
+                                    <input type="text" name="vermaisSobrenomeAluno" id="vermaisSobrenomeAluno"
+                                           class="form-control text-center" required="required"
+                                           style='background:transparent; border:none;' disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2 text-center">
+                        <div class="col-6">
+                            <h3 for="vermaisEmailAluno" class="label-control">Email:</h3>
+                            <input type="email" name="vermaisEmailAluno" id="vermaisEmailAluno"
+                                   class="form-control text-center"
+                                   required="required" style='background:transparent; border:none;' disabled>
+                        </div>
+                        <div class="col-6 text-center">
+                            <h3 for="vermaisCelularAluno" class="label-control">Celular:</h3>
+                            <input type="text" name="vermaisCelularAluno" id="vermaisCelularAluno"
+                                   class="form-control telefoneBR text-center" required="required"
+                                   style='background:transparent; border:none;' disabled>
+                        </div>
+                    </div>
+                    <div class="row mt-2 text-center">
+                        <div class="col-6">
+                            <h3 for="vermaisCpfAluno" class="label-control">Cpf:</h3>
+                            <input type="text" name="vermaisCpfAluno" id="vermaisCpfAluno"
+                                   class="form-control text-center cpf"
+                                   required="required" style='background:transparent; border:none;' disabled>
+                        </div>
+                        <div class="col-6">
+                            <h3 for="vermaisNascimentoAluno" class="label-control">Data de nascimento:</h3>
+                            <input type="date" name="vermaisNascimentoAluno" id="vermaisNascimentoAluno"
+                                   class="form-control text-center"
+                                   required="required" style='background:transparent; border:none;' disabled>
+                        </div>
+                    </div>
+                    <div class="row mt-2 text-center">
+                        <div class="col-12">
+                            <h3 for="vermaisTurmaDoAluno" class="label-control">Turma:</h3>
+                            <input name="vermaisTurmaDoAluno" id="vermaisTurmaDoAluno" class="form-control text-center"
+                                   style='background:transparent; border:none;' disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!--Modal de cadastro de alunos-->
 <div class="modal fade" id="cadAluno" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-success text-white">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro de Aluno</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro de aluno</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="" method="post" name="frmCadAluno" id="frmCadAluno">
@@ -495,13 +581,14 @@ if ($_SESSION['idadm']) {
                     <div class="row mt-2">
                         <div class="col-8">
                             <label for="cadEmailAluno" class="label-control">Email:</label>
+
                             <input type="email" name="cadEmailAluno" placeholder="Digite Seu Email" id="cadEmailAluno"
                                    class="form-control"
                                    required="required">
                         </div>
                         <div class="col-4">
                             <label for="cadCelularAluno" class="label-control">Celular:</label>
-                            <input type="text" name="cadCelularAluno" placeholder="Digite Seu N°" id="cadCelularAluno"
+                            <input type="text" name="cadCelularAluno" id="cadCelularAluno"
                                    class="form-control telefoneBR" required="required">
                         </div>
                     </div>
@@ -513,7 +600,7 @@ if ($_SESSION['idadm']) {
                                    required="required">
                         </div>
                         <div class="col-6">
-                            <label for="cadNascimentoAluno" class="label-control">Data de Nascimento:</label>
+                            <label for="cadNascimentoAluno" class="label-control">Data de nascimento:</label>
                             <input type="date" name="cadNascimentoAluno" id="cadNascimentoAluno" class="form-control"
                                    required="required">
                         </div>
@@ -533,13 +620,13 @@ if ($_SESSION['idadm']) {
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Edição de Aluno</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Edição de aluno</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="" method="post" name="frmEditAluno" id="frmEditAluno">
                 <div class="modal-body">
                     <div>
-                        <input type="text" id="idEditAluno" name="idEditAluno">
+                        <input type="hidden" id="idEditAluno" name="idEditAluno">
                     </div>
                     <div class="row">
                         <div class="col-12">
@@ -590,12 +677,12 @@ if ($_SESSION['idadm']) {
                     </div>
                     <div class="row mt-2">
                         <div class="col-6">
-                            <label for="editCpfAluno" class="label-control">CPF:</label>
+                            <label for="editCpfAluno" class="label-control">Cpf:</label>
                             <input type="text" name="editCpfAluno" id="editCpfAluno" class="form-control cpf"
                                    required="required">
                         </div>
                         <div class="col-6">
-                            <label for="editNascimentoAluno" class="label-control">Data de Nascimento:</label>
+                            <label for="editNascimentoAluno" class="label-control">Data de nascimento:</label>
                             <input type="date" name="editNascimentoAluno" id="editNascimentoAluno" class="form-control"
                                    required="required">
                         </div>
@@ -615,13 +702,13 @@ if ($_SESSION['idadm']) {
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-danger text-white">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Deletar Aluno</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Deletar aluno</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="" method="post" name="frmDeleteAluno" id="frmDeleteAluno">
                 <div class="modal-body">
                     <div>
-                        <input type="text" id="idDeleteAluno" name="idDeleteAluno">
+                        <input type="hidden" id="idDeleteAluno" name="idDeleteAluno">
                     </div>
                     <div class="">
                         <p class="fs-3"> Tem certeza que deseja deletar esse aluno?</p>
@@ -631,7 +718,7 @@ if ($_SESSION['idadm']) {
                     <div>
                         <input type="checkbox" name="confimacaoDeleteAluno" id="confimacaoDeleteAluno"
                                required="required">
-                        <label for="confimacaoDeleteAluno">Tenho Certeza!</label>
+                        <label for="confimacaoDeleteAluno">Tenho certeza!</label>
                     </div>
 
                 </div>
@@ -644,13 +731,84 @@ if ($_SESSION['idadm']) {
     </div>
 </div>
 
+<!--Modal de ver mais sobre o adm-->
+<div class="modal fade" id="vermaisAdm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background: #1E2B37;color: white">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Ver mais</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="post" name="frmVermaisAdm" id="frmVermaisAdm">
+                <div class="modal-body">
+                    <div>
+                        <input type="hidden" id="idVermaisAdm" name="idVermaisAdm">
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row text-center">
+                                <div class="col-6">
+                                    <h3 for="vermaisNomeAdm" class="label-control">Nome:</h3>
+                                    <input type="text" name="vermaisNomeAdm" id="vermaisNomeAdm"
+                                           class="form-control text-center"
+                                           required="required" style='background:transparent; border:none;' disabled>
+                                </div>
+                                <div class="col-6 text-center">
+                                    <h3 for="vermaisSobrenomeAdm" class="label-control">Sobrenome:</h3>
+                                    <input type="text" name="vermaisSobrenomeAdm" id="vermaisSobrenomeAdm"
+                                           class="form-control text-center" required="required"
+                                           style='background:transparent; border:none;' disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2 text-center">
+                        <div class="col-6">
+                            <h3 for="vermaisEmailAdm" class="label-control">Email:</h3>
+                            <input type="email" name="vermaisEmailAdm" id="vermaisEmailAdm"
+                                   class="form-control text-center"
+                                   required="required" style='background:transparent; border:none;' disabled>
+                        </div>
+                        <div class="col-6 text-center">
+                            <h3 for="vermaisCelularAdm" class="label-control">Celular:</h3>
+                            <input type="text" name="vermaisCelularAdm" id="vermaisCelularAdm"
+                                   class="form-control telefoneBR text-center" required="required"
+                                   style='background:transparent; border:none;' disabled>
+                        </div>
+                    </div>
+                    <div class="row mt-2 text-center">
+                        <div class="col-6">
+                            <h3 for="vermaisCpfAdm" class="label-control">Cpf:</h3>
+                            <input type="text" name="vermaisCpfAdm" id="vermaisCpfAdm"
+                                   class="form-control text-center cpf"
+                                   required="required" style='background:transparent; border:none;' disabled>
+                        </div>
+                        <div class="col-6">
+                            <h3 for="vermaisNascimentoAdm" class="label-control">Data de nascimento:</h3>
+                            <input type="date" name="vermaisNascimentoAdm" id="vermaisNascimentoAdm"
+                                   class="form-control text-center"
+                                   required="required" style='background:transparent; border:none;' disabled>
+                        </div>
+                    </div>
+                    <div class="row mt-2 text-center">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <!--Modal de cadastro de administrador-->
 <div class="modal fade" id="cadAdm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-success text-white">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro de Aministrador</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro de administrador</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="" method="post" name="frmCadAdm" id="frmCadAdm">
@@ -701,7 +859,7 @@ if ($_SESSION['idadm']) {
                                    required="required">
                         </div>
                         <div class="col-6">
-                            <label for="cadNascimentoAdm" class="label-control">Data de Nascimento:</label>
+                            <label for="cadNascimentoAdm" class="label-control">Data de nascimento:</label>
                             <input type="date" name="cadNascimentoAdm" id="cadNascimentoAdm" class="form-control"
                                    required="required">
                         </div>
@@ -721,13 +879,13 @@ if ($_SESSION['idadm']) {
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Edição de Administrador</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Edição de administrador</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="" method="post" name="frmEditAdm" id="frmEditAdm">
                 <div class="modal-body">
                     <div>
-                        <input type="text" id="idEditAdm" name="idEditAdm">
+                        <input type="hidden" id="idEditAdm" name="idEditAdm">
                     </div>
                     <div class="row">
                         <div class="col-12">
@@ -753,8 +911,7 @@ if ($_SESSION['idadm']) {
                         </div>
                         <div class="col-4">
                             <label for="editSenhaAdm" class="label-control">Senha:</label>
-                            <input type="text" name="editSenhaAdm" id="editSenhaAdm" class="form-control"
-                                   required="required">
+                            <input type="text" name="editSenhaAdm" id="editSenhaAdm" class="form-control">
                         </div>
                         <div class="col-12 mt-2">
                             <label for="editCelularAdm" class="label-control">Celular:</label>
@@ -789,13 +946,13 @@ if ($_SESSION['idadm']) {
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-danger text-white">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Deletar Administrador</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Deletar administrador</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="" method="post" name="frmDeleteAdm" id="frmDeleteAdm">
                 <div class="modal-body">
                     <div>
-                        <input type="text" id="idDeleteAdm" name="idDeleteAdm">
+                        <input type="hidden" id="idDeleteAdm" name="idDeleteAdm">
                     </div>
                     <div class="">
                         <p class="fs-3">Tem certeza que deseja deletar esse administrador?</p>
@@ -805,7 +962,7 @@ if ($_SESSION['idadm']) {
                     </div>
                     <div>
                         <input type="checkbox" name="confimacaoDeleteAdm" id="confimacaoDeleteAdm" required="required">
-                        <label for="confimacaoDeleteAdm">Tenho Certeza!</label>
+                        <label for="confimacaoDeleteAdm">Tenho certeza!</label>
                     </div>
 
                 </div>
@@ -823,7 +980,7 @@ if ($_SESSION['idadm']) {
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-success text-white">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro de Curso</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro de curso</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="" method="post" name="frmCadCurso" id="frmCadCurso">
@@ -855,12 +1012,12 @@ if ($_SESSION['idadm']) {
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Edição de Curso</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Edição de curso</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="" method="post" name="frmEditCurso" id="frmEditCurso">
                 <div class="modal-body">
-                    <input type="text" name="idEditCurso" id="idEditCurso">
+                    <input type="hidden" name="idEditCurso" id="idEditCurso">
                     <div class="">
                         <label for="editNomeCurso" class="label-control">Nome do Curso:</label>
                         <input type="text" name="editNomeCurso" placeholder="Digite Seu Curso" id="editNomeCurso"
@@ -889,13 +1046,13 @@ if ($_SESSION['idadm']) {
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-danger text-white">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Deletar Curso</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Deletar curso</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="" method="post" name="frmDeleteCurso" id="frmDeleteCurso">
                 <div class="modal-body">
                     <div>
-                        <input type="text" id="idDeleteCurso" name="idDeleteCurso">
+                        <input type="hidden" id="idDeleteCurso" name="idDeleteCurso">
                     </div>
                     <div class="">
                         <p class="fs-3">Tem certeza que deseja deletar esse curso?</p>
@@ -905,7 +1062,7 @@ if ($_SESSION['idadm']) {
                     <div>
                         <input type="checkbox" name="confimacaoDeleteCurso" id="confimacaoDeleteCurso"
                                required="required">
-                        <label for="confimacaoDeleteCurso">Tenho Certeza!</label>
+                        <label for="confimacaoDeleteCurso">Tenho certeza!</label>
                     </div>
 
                 </div>
@@ -924,7 +1081,7 @@ if ($_SESSION['idadm']) {
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-success text-white">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro de Turma</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro de turma</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="" method="post" name="frmCadTurma" id="frmCadTurma">
@@ -963,12 +1120,12 @@ if ($_SESSION['idadm']) {
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Edição de Turma</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Edição de turma</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="" method="post" name="frmEditTurma" id="frmEditTurma">
                 <div class="modal-body">
-                    <input type="text" id="idEditTurma" name="idEditTurma">
+                    <input type="hidden" id="idEditTurma" name="idEditTurma">
                     <div class="">
                         <label for="editNumeroTurma" class="label-control">Número da Turma:</label>
                         <input type="text" name="editNumeroTurma" placeholder="Digite o Número da Sua Turma"
@@ -1003,13 +1160,13 @@ if ($_SESSION['idadm']) {
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-danger text-white">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Deletar Turma</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Deletar turma</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="" method="post" name="frmDeleteTurma" id="frmDeleteTurma">
                 <div class="modal-body">
                     <div>
-                        <input type="text" id="idDeleteTurma" name="idDeleteTurma">
+                        <input type="hidden" id="idDeleteTurma" name="idDeleteTurma">
                     </div>
                     <div class="">
                         <p class="fs-3">Tem certeza que deseja deletar essa turma?</p>
@@ -1019,7 +1176,7 @@ if ($_SESSION['idadm']) {
                     <div>
                         <input type="checkbox" name="confimacaoDeleteCurso" id="confimacaoDeleteCurso"
                                required="required">
-                        <label for="confimacaoDeleteCurso">Tenho Certeza!</label>
+                        <label for="confimacaoDeleteCurso">Tenho certeza!</label>
                     </div>
 
                 </div>
@@ -1027,7 +1184,7 @@ if ($_SESSION['idadm']) {
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal"
                             onclick="fecharModal('listarTurma')">Fechar
                     </button>
-                    <button type="submit" class="btn btn-danger" id="btnDeleteAdm">Deletar</button>
+                    <button type="submit" class="btn btn-danger" id="btnDeleteTurma">Deletar</button>
                 </div>
             </form>
         </div>
@@ -1087,6 +1244,69 @@ if ($_SESSION['idadm']) {
     </div>
 </div>
 <!-- MODAL COM IMAGEM -->
+
+<!-- MODAL DE INVENTAÇÃO DE MODA -->
+
+<div class="modal fade" id="ModalCooperval" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Sobre a COOPERVAL</h1>
+            </div>
+            <div class="modal-body">
+                <p><b>
+                        A Cooperval, Cooperativa Agroindustrial Vale do Ivaí Ltda., com sede no município de Jandaia do
+                        Sul,
+                        Estado do Paraná, foi constituída no dia 05 de julho de 1980, por iniciativa de um grupo de
+                        agricultores, considerando-se as expectativas positivas do Proálcool “Programa Nacional de
+                        Álcool”.
+                    </b></p>
+
+                <p><b>
+                        No dia 04 de abril de 1981, houve o lançamento da pedra fundamental da Destilaria de Álcool,
+                        iniciando-se
+                        então a construção dessa indústria. Ainda em 1981, iniciou-se o projeto de plantio de cana de
+                        açúcar,
+                        com mais de 1.400 hectares, estabelecendo-se um plano gradativo de aumento da área plantada,
+                        atingindo-se em 1997 a marca de mais de 10.000 hectares efetivamente plantados.
+                    </b></p>
+            </div>
+            <div class="modal-footer">
+                <a href="dashboard.php">
+                    <button type="button" class="btn btn-secondary" id="btnFechar" data-bs-dismiss="modal">Fechar
+                    </button>
+                </a>
+                <button class="btn btn-primary" data-bs-target="#ModalImagem" data-bs-toggle="modal">Imagem</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FIM MODAL DE INVENTAÇÃO DE MODA -->
+
+<!-- MODAL COM IMAGEM -->
+<div class="modal fade" id="ModalImagem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Imagem</h1>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <img src="./img/coopervall.jpg" alt="Imagem da Fábrica..." class="" width="460px">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ModalCooperval"
+                        data-bs-dismiss="modal">Voltar Para a História
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FIM MODAL COM IMAGEM -->
+
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

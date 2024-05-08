@@ -323,14 +323,16 @@ function abrirModalJsCurso(idId, inId, idNome, inNome, idLocal, inLocal, nomeMod
                     console.log(data)
 
                     if (data.success) {
-                        carregarConteudo('listarCurso')
-                        if (`${addEditDel}` === 'addCurso' || `${addEditDel}` === 'deleteCurso') {
-                            alertSuccess(data.message, '#65B307')
-                            botoes.disabled = false;
-                            document.getElementById(`${formulario}`).reset()
-                        } else if (`${addEditDel}` === 'editCurso') {
-                            alertSuccess(data.message, '#2b58de')
-                        }
+                            carregarConteudo('listarCurso')
+                        setTimeout(function myFunction() {
+                            if (`${addEditDel}` === 'addCurso' || `${addEditDel}` === 'deleteCurso') {
+                                alertSuccess(data.message, '#65B307')
+                                botoes.disabled = false;
+                                document.getElementById(`${formulario}`).reset()
+                            } else if (`${addEditDel}` === 'editCurso') {
+                                alertSuccess(data.message, '#2b58de')
+                            }
+                        }, 1000)
 
                     } else {
                         alertError(data.message)

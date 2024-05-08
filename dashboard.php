@@ -18,7 +18,7 @@ if ($_SESSION['idadm']) {
 <html lang="pt-br">
 
 <head>
-    <title>Title</title>
+    <title>Cooperval</title>
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="./css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -399,27 +399,37 @@ if ($_SESSION['idadm']) {
                         },
                         locale: 'pt-br',
                         events: [ //aqui fica os eventos q aparece no calendário
+                            {
+                                title: 'fim do A.C.',
+                                start: '0001-01-01T10:00:00',
+                                end: '0001-01-01T10:00:00',
+                                backgroundColor: 'blue',
+                                borderColor: 'blue',
+
+                            },
                             <?php
                             $vari = listarTabela('*', 'calendario');
-                            foreach ($vari as $item) {
+                            if ($vari !== false) {
 
-                                $id = $item->idcalendario;
-                                $titulo = $item->titulo;
-                                $dataInicio = $item->dataIn;
-                                $dataFinal = $item->dataEnd;
-                                $cor = $item->cor;
-                                echo "
+                                foreach ($vari as $item) {
+
+                                    $id = $item->idcalendario;
+                                    $titulo = $item->titulo;
+                                    $dataInicio = $item->dataIn;
+                                    $dataFinal = $item->dataEnd;
+                                    $cor = $item->cor;
+                                    echo "
                 {
                     title: '$titulo',
                     start: '$dataInicio',
                     end: '$dataFinal',
                     backgroundColor: '$cor',
                     borderColor: '$cor',
-                    
-                    
-                },";
-                            }
 
+
+                },";
+                                }
+                            }
                             ?>
 
 
@@ -464,13 +474,15 @@ if ($_SESSION['idadm']) {
                             <div class="row text-center">
                                 <div class="col-6">
                                     <h3 for="vermaisNomeAluno" class="label-control">Nome:</h3>
-                                    <input type="text" name="vermaisNomeAluno" id="vermaisNomeAluno" class="form-control text-center"
+                                    <input type="text" name="vermaisNomeAluno" id="vermaisNomeAluno"
+                                           class="form-control text-center"
                                            required="required" style='background:transparent; border:none;' disabled>
                                 </div>
                                 <div class="col-6 text-center">
                                     <h3 for="vermaisSobrenomeAluno" class="label-control">Sobrenome:</h3>
                                     <input type="text" name="vermaisSobrenomeAluno" id="vermaisSobrenomeAluno"
-                                           class="form-control text-center" required="required" style='background:transparent; border:none;' disabled>
+                                           class="form-control text-center" required="required"
+                                           style='background:transparent; border:none;' disabled>
                                 </div>
                             </div>
                         </div>
@@ -479,31 +491,36 @@ if ($_SESSION['idadm']) {
                     <div class="row mt-2 text-center">
                         <div class="col-6">
                             <h3 for="vermaisEmailAluno" class="label-control">Email:</h3>
-                            <input type="email" name="vermaisEmailAluno" id="vermaisEmailAluno" class="form-control text-center"
+                            <input type="email" name="vermaisEmailAluno" id="vermaisEmailAluno"
+                                   class="form-control text-center"
                                    required="required" style='background:transparent; border:none;' disabled>
                         </div>
                         <div class="col-6 text-center">
                             <h3 for="vermaisCelularAluno" class="label-control">Celular:</h3>
                             <input type="text" name="vermaisCelularAluno" id="vermaisCelularAluno"
-                                   class="form-control telefoneBR text-center" required="required" style='background:transparent; border:none;' disabled>
+                                   class="form-control telefoneBR text-center" required="required"
+                                   style='background:transparent; border:none;' disabled>
                         </div>
                     </div>
                     <div class="row mt-2 text-center">
                         <div class="col-6">
                             <h3 for="vermaisCpfAluno" class="label-control">Cpf:</h3>
-                            <input type="text" name="vermaisCpfAluno" id="vermaisCpfAluno" class="form-control text-center cpf"
+                            <input type="text" name="vermaisCpfAluno" id="vermaisCpfAluno"
+                                   class="form-control text-center cpf"
                                    required="required" style='background:transparent; border:none;' disabled>
                         </div>
                         <div class="col-6">
                             <h3 for="vermaisNascimentoAluno" class="label-control">Data de nascimento:</h3>
-                            <input type="date" name="vermaisNascimentoAluno" id="vermaisNascimentoAluno" class="form-control text-center"
+                            <input type="date" name="vermaisNascimentoAluno" id="vermaisNascimentoAluno"
+                                   class="form-control text-center"
                                    required="required" style='background:transparent; border:none;' disabled>
                         </div>
                     </div>
                     <div class="row mt-2 text-center">
                         <div class="col-12">
                             <h3 for="vermaisTurmaDoAluno" class="label-control">Turma:</h3>
-                            <input name="vermaisTurmaDoAluno" id="vermaisTurmaDoAluno" class="form-control text-center" style='background:transparent; border:none;' disabled>
+                            <input name="vermaisTurmaDoAluno" id="vermaisTurmaDoAluno" class="form-control text-center"
+                                   style='background:transparent; border:none;' disabled>
                         </div>
                     </div>
                 </div>
@@ -727,13 +744,15 @@ if ($_SESSION['idadm']) {
                             <div class="row text-center">
                                 <div class="col-6">
                                     <h3 for="vermaisNomeAdm" class="label-control">Nome:</h3>
-                                    <input type="text" name="vermaisNomeAdm" id="vermaisNomeAdm" class="form-control text-center"
+                                    <input type="text" name="vermaisNomeAdm" id="vermaisNomeAdm"
+                                           class="form-control text-center"
                                            required="required" style='background:transparent; border:none;' disabled>
                                 </div>
                                 <div class="col-6 text-center">
                                     <h3 for="vermaisSobrenomeAdm" class="label-control">Sobrenome:</h3>
                                     <input type="text" name="vermaisSobrenomeAdm" id="vermaisSobrenomeAdm"
-                                           class="form-control text-center" required="required" style='background:transparent; border:none;' disabled>
+                                           class="form-control text-center" required="required"
+                                           style='background:transparent; border:none;' disabled>
                                 </div>
                             </div>
                         </div>
@@ -742,24 +761,28 @@ if ($_SESSION['idadm']) {
                     <div class="row mt-2 text-center">
                         <div class="col-6">
                             <h3 for="vermaisEmailAdm" class="label-control">Email:</h3>
-                            <input type="email" name="vermaisEmailAdm" id="vermaisEmailAdm" class="form-control text-center"
+                            <input type="email" name="vermaisEmailAdm" id="vermaisEmailAdm"
+                                   class="form-control text-center"
                                    required="required" style='background:transparent; border:none;' disabled>
                         </div>
                         <div class="col-6 text-center">
                             <h3 for="vermaisCelularAdm" class="label-control">Celular:</h3>
                             <input type="text" name="vermaisCelularAdm" id="vermaisCelularAdm"
-                                   class="form-control telefoneBR text-center" required="required" style='background:transparent; border:none;' disabled>
+                                   class="form-control telefoneBR text-center" required="required"
+                                   style='background:transparent; border:none;' disabled>
                         </div>
                     </div>
                     <div class="row mt-2 text-center">
                         <div class="col-6">
                             <h3 for="vermaisCpfAdm" class="label-control">Cpf:</h3>
-                            <input type="text" name="vermaisCpfAdm" id="vermaisCpfAdm" class="form-control text-center cpf"
+                            <input type="text" name="vermaisCpfAdm" id="vermaisCpfAdm"
+                                   class="form-control text-center cpf"
                                    required="required" style='background:transparent; border:none;' disabled>
                         </div>
                         <div class="col-6">
                             <h3 for="vermaisNascimentoAdm" class="label-control">Data de nascimento:</h3>
-                            <input type="date" name="vermaisNascimentoAdm" id="vermaisNascimentoAdm" class="form-control text-center"
+                            <input type="date" name="vermaisNascimentoAdm" id="vermaisNascimentoAdm"
+                                   class="form-control text-center"
                                    required="required" style='background:transparent; border:none;' disabled>
                         </div>
                     </div>

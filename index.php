@@ -27,10 +27,6 @@ include_once("./bodyy.php");
 <div class="login-box">
     <h2 class="fontee">LOGIN <span class="mdi mdi-login"></span></h2>
     <form method="post" name="frmLogin" id="frmLogin">
-        <?php
-        $senha = criarSenhaHash("12345678");
-        $senharick = criarSenhaHash("23082306");
-        ?>
         <div class="user-box">
             <input type="email" name="email" id="email" autocomplete="off" required="required" class="m-0">
             <label>Email <span class="mdi mdi-email"></span></label>

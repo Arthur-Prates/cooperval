@@ -1,13 +1,14 @@
-
-
 <div class="card text-center">
     <div class="card-header">
-        #Administrador(es)
-        <div class="d-flex float-end align-items-center">
-            <button class="btn btn-sm btn-secondary"
-                    onclick="abrirModalJsAdm('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','cadAdm','A','btnCadAdm','addAdm','frmCadAdm')">
-                Cadastrar
-            </button>
+        <div class="d-flex justify-content-between align-items-center">
+            <p class="fs-3">#Administrador(es)</p>
+
+            <div class="d-flex float-end align-items-center">
+                <button class="btn btn-sm btn-secondary"
+                        onclick="abrirModalJsAdm('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','cadAdm','A','btnCadAdm','addAdm','frmCadAdm')">
+                    Cadastrar
+                </button>
+            </div>
         </div>
     </div>
     <div class="card-body">
@@ -34,6 +35,7 @@
                     $email = $admItem->email;
                     $nascimento = $admItem->nascimento;
                     $celular = $admItem->celular;
+                    $cpf = $admItem->cpf;
 
                     ?>
                     <tr class="table-secondary">
@@ -43,7 +45,10 @@
                         <td><?php echo $nascimento ?></td>
                         <td><?php echo $celular ?></td>
                         <td>
-                            <button class="btn btn-success btn-sm">Ver mais</button>
+                            <button class="btn btn-success btn-sm"
+                                    onclick="abrirModalJsAdm('<?php echo $id ?>','idVermaisAdm','<?php echo $nome ?>','vermaisNomeAdm','<?php echo $sobrenome ?>','vermaisSobrenomeAdm','<?php echo $email ?>','vermaisEmailAdm','<?php echo $celular ?>','vermaisCelularAdm','<?php echo $cpf ?>','vermaisCpfAdm','<?php echo $nascimento ?>','vermaisNascimentoAdm','vermaisAdm','A','btnVermaisAdm','vermaisAdm','frmVermaisAdm')">
+                                Ver mais
+                            </button>
                             <button class="btn btn-primary btn-sm"
                                     onclick="abrirModalJsAdm('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','editAdm','A','btnEditAdm','editAdm','frmEditAdm')">
                                 Alterar
@@ -65,9 +70,8 @@
             ?>
             </tbody>
         </table>
-
     </div>
     <div class="card-footer text-body-secondary">
-    <?php echo DATAATUAL?>
+        <?php echo DATAATUAL ?>
     </div>
 </div>

@@ -1,11 +1,14 @@
 <div class="card text-center">
     <div class="card-header">
-        #Turma(s)
-        <div class="d-flex float-end align-items-center">
-            <button class="btn btn-sm btn-secondary"
-                    onclick="abrirModalJsTurma('nao', 'nao', 'nao', 'nao', 'nao', 'nao', 'nao', 'nao','cadTurma', 'A', 'btnCadTurma', 'addTurma', 'frmCadTurma')">
-                Cadastrar
-            </button>
+        <div class="d-flex justify-content-between align-items-center">
+            <p class="fs-3">#Turma(s)</p>
+
+            <div class="d-flex float-end align-items-center">
+                <button class="btn btn-sm btn-secondary"
+                        onclick="abrirModalJsTurma('nao', 'nao', 'nao', 'nao', 'nao', 'nao', 'nao', 'nao','cadTurma', 'A', 'btnCadTurma', 'addTurma', 'frmCadTurma')">
+                    Cadastrar
+                </button>
+            </div>
         </div>
     </div>
     <div class="card-body">
@@ -39,15 +42,25 @@
                         <td><?php echo $numero ?></td>
                         <td><?php echo $nome ?></td>
                         <td><?php echo $codigo ?></td>
-                        <td><?php if($ativo == 'A'){ echo 'Ativado';}else{ echo 'Desativado';} ?></td>
+                        <td><?php if ($ativo == 'A') {
+                                echo 'Ativado';
+                            } else {
+                                echo 'Desativado';
+                            } ?></td>
                         <td>
                             <?php if ($ativo == 'A') {
                                 ?>
-                                <button class="btn btn-danger btn-sm" onclick="ativarDesativar('desativarTurma.php','<?php echo $id ?>','listarTurma')">Desativar</button>
+                                <button class="btn btn-danger btn-sm"
+                                        onclick="ativarDesativar('desativarTurma.php','<?php echo $id ?>','listarTurma')">
+                                    Desativar
+                                </button>
                                 <?php
                             } else {
                                 ?>
-                                <button class="btn btn-success btn-sm" onclick="ativarDesativar('ativarTurma.php','<?php echo $id ?>','listarTurma')">Ativar</button>
+                                <button class="btn btn-success btn-sm"
+                                        onclick="ativarDesativar('ativarTurma.php','<?php echo $id ?>','listarTurma')">
+                                    Ativar
+                                </button>
                                 <?php
                             } ?>
 
@@ -75,9 +88,9 @@
 
     </div>
     <div class="card-footer text-body-secondary">
-       <?php
-       echo DATAATUAL
-       ?>
+        <?php
+        echo DATAATUAL
+        ?>
     </div>
 </div>
 

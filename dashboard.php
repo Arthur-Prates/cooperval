@@ -60,7 +60,7 @@ if ($_SESSION['idadm']) {
                 }
                 ?>
             </ul>
-            <button type="button" name="logout" id="logout" class="btn btn-danger" onclick="redireciona('logout.php')">
+            <button type="button" name="logout" id="logout" class="btnlindo" onclick="redireciona('logout.php')">
                 Sair
             </button>
 
@@ -72,7 +72,9 @@ if ($_SESSION['idadm']) {
     <div class="row">
         <div class="col-lg-2 verdeCoop tamanhoBarraLateral fs-4">
             <div class="inputii" style="background-color: #048149">
-                <div class="mt-3 mb-2 value" onclick="window.location.reload()">Calendário</div>
+                <div class="mt-3 mb-2 value" onclick="window.location.reload()"><i
+                            class="fas fa-calendar-alt"></i>Calendário
+                </div>
                 <div class="mt-3 mb-2 value" onclick="carregarConteudo('listarCalendario')"><i
                             class="fas fa-calendar-alt"></i> Agendamento
                 </div>
@@ -1278,121 +1280,66 @@ if ($_SESSION['idadm']) {
     </div>
 </div>
 
-<!-- MODAL DE INVENTAÇÃO DE MODA -->
+<!-- MODAL sobre a cooperval -->
 
-<div class="modal fade" id="ModalCooperval" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+<div class="modal fade" id="ModalCooperval" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Sobre a COOPERVAL</h1>
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Modal 1</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <b >
-                    A Cooperval, Cooperativa Agroindustrial Vale do Ivaí Ltda., com sede no município de Jandaia do Sul,
-                    Estado do Paraná, foi constituída no dia 05 de julho de 1980, por iniciativa de um grupo de
-                    agricultores, considerando-se as expectativas positivas do Proálcool “Programa Nacional de Álcool”. No
-                    dia 04 de abril de 1981, houve o lançamento da pedra fundamental da Destilaria de Álcool, iniciando-se
-                    então a construção dessa indústria. Ainda em 1981, iniciou-se o projeto de plantio de cana de açúcar,
-                    com mais de 1.400 hectares, estabelecendo-se um plano gradativo de aumento da área plantada,
-                    atingindo-se em 1997 a marca de mais de 10.000 hectares efetivamente plantados.
-                </b>
-            </div>
-            <div class="modal-footer">
-                <a href="dashboard.php">
-                    <button type="button" class="btn btn-secondary" id="btnFechar" data-bs-dismiss="modal">Fechar
-                    </button>
-                </a>
-                <button class="btn btn-primary" data-bs-target="#ModalImagem" data-bs-toggle="modal">Imagem</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- MODAL DE INVENTAÇÃO DE MODA -->
-
-<!-- MODAL COM IMAGEM -->
-<div class="modal fade" id="ModalImagem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Imagem</h1>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-5">
-                        <img src="./coopervall.jpg" alt="Imagem da Fábrica...">
-
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ModalCooperval" data-bs-dismiss="modal">Voltar Para a História</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- MODAL COM IMAGEM -->
-
-<!-- MODAL DE INVENTAÇÃO DE MODA -->
-
-<div class="modal fade" id="ModalCooperval" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Sobre a COOPERVAL</h1>
-            </div>
-            <div class="modal-body">
-                <p><b>
+                <p>
+                    <b>
                         A Cooperval, Cooperativa Agroindustrial Vale do Ivaí Ltda., com sede no município de Jandaia do
                         Sul,
                         Estado do Paraná, foi constituída no dia 05 de julho de 1980, por iniciativa de um grupo de
                         agricultores, considerando-se as expectativas positivas do Proálcool “Programa Nacional de
                         Álcool”.
-                    </b></p>
+                    </b>
+                </p>
 
-                <p><b>
+                <p>
+                    <b>
                         No dia 04 de abril de 1981, houve o lançamento da pedra fundamental da Destilaria de Álcool,
                         iniciando-se
-                        então a construção dessa indústria. Ainda em 1981, iniciou-se o projeto de plantio de cana de
-                        açúcar,
+                        então a construção dessa indústria. Ainda em 1981, iniciou-se o projeto de plantio de
+                        cana-de-açúcar,
                         com mais de 1.400 hectares, estabelecendo-se um plano gradativo de aumento da área plantada,
                         atingindo-se em 1997 a marca de mais de 10.000 hectares efetivamente plantados.
-                    </b></p>
+                    </b>
+                </p>
             </div>
             <div class="modal-footer">
-                <a href="dashboard.php">
-                    <button type="button" class="btn btn-secondary" id="btnFechar" data-bs-dismiss="modal">Fechar
-                    </button>
-                </a>
-                <button class="btn btn-primary" data-bs-target="#ModalImagem" data-bs-toggle="modal">Imagem</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--FIM MODAL DE INVENTAÇÃO DE MODA -->
-
-<!-- MODAL COM IMAGEM -->
-<div class="modal fade" id="ModalImagem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Imagem</h1>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6 text-center">
-                        <img src="./img/coopervall.jpg" alt="Imagem da Fábrica..." class="" width="460px">
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ModalCooperval"
-                        data-bs-dismiss="modal">Voltar Para a História
+                <button class="btn btn-primary" data-bs-target="#ModalImagem" data-bs-toggle="modal">Ver imagem
                 </button>
             </div>
         </div>
     </div>
 </div>
-<!-- FIM MODAL COM IMAGEM -->
+
+<div class="modal fade" id="ModalImagem" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Imagem da fábrica da Cooperval</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12 text-center">
+                    <img src="./img/coopervall.jpg" alt="Imagem da Fábrica..." class="" width="460px">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-bs-target="#ModalCooperval" data-bs-toggle="modal">Voltar para a história
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

@@ -1,2 +1,2 @@
-<body style="background: linear-gradient(#187F00, #000000)">
+<body style="background: linear-gradient(#048149, black)">
 </body>

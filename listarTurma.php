@@ -70,7 +70,7 @@
                             </button>
                             <button class="btn btn-danger btn-sm"
                                     onclick="abrirModalJsTurma('<?php echo $id ?>', 'idDeleteTurma', 'nao', 'nao', 'nao', 'nao', 'nao', 'nao', 'deleteTurma', 'A', 'btnDeleteTurma', 'deleteTurma', 'frmDeleteTurma')">
-                                Deletar
+                                <span class="mdi mdi-trash-can"></span>
                             </button>
                         </td>
                     </tr>

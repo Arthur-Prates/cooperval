@@ -57,7 +57,7 @@
                             </button>
                             <button class="btn btn-danger btn-sm"
                                     onclick="abrirModalJsAluno('<?php echo $id ?>','idDeleteAluno','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','deleteAluno','A','btnDeleteAluno','deleteAluno','frmDeleteAluno')">
-                                Deletar
+                                <span class="mdi mdi-trash-can"></span>
                             </button>
                         </td>
                     </tr>

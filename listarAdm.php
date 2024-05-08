@@ -50,12 +50,12 @@
                                 Ver mais
                             </button>
                             <button class="btn btn-primary btn-sm"
-                                    onclick="abrirModalJsAdm('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','editAdm','A','btnEditAdm','editAdm','frmEditAdm')">
+                                    onclick="abrirModalJsAdm('<?php echo $id ?>','idEditAdm','<?php echo $nome ?>','editNomeAdm','<?php echo $sobrenome ?>','editSobrenomeAdm','<?php echo $email?>','editEmailAdm','<?php echo $celular ?>','editCelularAdm','<?php echo $cpf?>','editCpfAdm','<?php echo $nascimento ?>','editNascimentoAdm','editAdm','A','btnEditAdm','editAdm','frmEditAdm')">
                                 Alterar
                             </button>
                             <button class="btn btn-danger btn-sm"
-                                    onclick="abrirModalJsAdm('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','deleteAdm','A','btnDeleteAdm','deleteAdm','frmDeleteAdm')">
-                                Deletar
+                                    onclick="abrirModalJsAdm('<?php echo $id ?>','idDeleteAdm','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','deleteAdm','A','btnDeleteAdm','deleteAdm','frmDeleteAdm')">
+                                <span class="mdi mdi-trash-can"></span>
                             </button>
                         </td>
                     </tr>

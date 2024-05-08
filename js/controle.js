@@ -506,6 +506,9 @@ function abrirModalJsAdm(idId, inId, idNome, inNome, idSobrenome, inSobrenome, i
                             document.getElementById(`${formulario}`).reset()
                         } else if (`${addEditDel}` === 'editAdm') {
                             alertSuccess(data.message, '#2b58de')
+                            botoes.disabled = false;
+                            document.getElementById(`${formulario}`).reset()
+
                         }
                     } else {
                         alertError(data.message)

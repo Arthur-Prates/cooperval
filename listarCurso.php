@@ -66,7 +66,7 @@
                             </button>
                             <button class="btn btn-danger btn-sm"
                                     onclick="abrirModalJsCurso('<?php echo $id ?>', 'idDeleteCurso', 'nao', 'nao', 'nao', 'nao','deleteCurso','A','btnDeleteCurso','deleteCurso','frmDeleteCurso')">
-                                Deletar
+                                <span class="mdi mdi-trash-can"></span>
                             </button>
                         </td>
                     </tr>

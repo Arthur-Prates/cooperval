@@ -1,22 +1,22 @@
 <div class="card text-center">
-    <div class="card-header">
+    <div class="card-header bg-dark text-white">
         <div class="d-flex justify-content-between align-items-center">
-            <p class="fs-3">#Turma(s)</p>
+            <p class="fs-3" style="text-decoration-line: underline">#Turmas</p>
 
             <div class="d-flex float-end align-items-center">
-                <button class="btn btn-sm btn-secondary"
+                <button class="btn btn-md btnbonitoo botaoAddEvento"
                         onclick="abrirModalJsTurma('nao', 'nao', 'nao', 'nao', 'nao', 'nao', 'nao', 'nao','cadTurma', 'A', 'btnCadTurma', 'addTurma', 'frmCadTurma')">
-                    Cadastrar
+                    Cadastrar Turma
                 </button>
             </div>
         </div>
     </div>
     <div class="card-body">
-        <table class="table table-striped table-hover ">
+        <table class="containers text-white">
             <thead>
-            <tr class="table-secondary">
+            <tr>
                 <th scope="col" width="5%">#</th>
-                <th scope="col" width="25%">Número da turma</th>
+                <th scope="col" width="15%">Número da turma</th>
                 <th scope="col" width="25%">Nome da turma</th>
                 <th scope="col" width="15%">Código da turma</th>
                 <th scope="col" width="15%">Status</th>
@@ -37,7 +37,7 @@
 
 
                     ?>
-                    <tr class="table-secondary">
+                    <tr>
                         <th scope="row"><?php echo $cont ?></th>
                         <td><?php echo $numero ?></td>
                         <td><?php echo $nome ?></td>
@@ -50,25 +50,25 @@
                         <td>
                             <?php if ($ativo == 'A') {
                                 ?>
-                                <button class="btn btn-danger btn-sm"
+                                <button class="btn btn-danger btn-md"
                                         onclick="ativarDesativar('desativarTurma.php','<?php echo $id ?>','listarTurma')">
                                     Desativar
                                 </button>
                                 <?php
                             } else {
                                 ?>
-                                <button class="btn btn-success btn-sm"
+                                <button class="btn btn-success btn-md"
                                         onclick="ativarDesativar('ativarTurma.php','<?php echo $id ?>','listarTurma')">
                                     Ativar
                                 </button>
                                 <?php
                             } ?>
 
-                            <button class="btn btn-primary btn-sm"
+                            <button class="btn btn-primary btn-md"
                                     onclick="abrirModalJsTurma('<?php echo $id ?>', 'idEditTurma', '<?php echo $numero ?>', 'editNumeroTurma', '<?php echo $nome ?>', 'editNomeTurma', '<?php echo $codigo ?>', 'editCodigoTurma','editTurma', 'A', 'btnEditTurma', 'editTurma', 'frmEditTurma')">
                                 Alterar
                             </button>
-                            <button class="btn btn-danger btn-sm"
+                            <button class="btn btn-danger btn-md"
                                     onclick="abrirModalJsTurma('<?php echo $id ?>', 'idDeleteTurma', 'nao', 'nao', 'nao', 'nao', 'nao', 'nao', 'deleteTurma', 'A', 'btnDeleteTurma', 'deleteTurma', 'frmDeleteTurma')">
                                 <span class="mdi mdi-trash-can"></span>
                             </button>
@@ -87,7 +87,7 @@
         </table>
 
     </div>
-    <div class="card-footer text-body-secondary">
+    <div class="card-footer bg-dark text-white">
         <?php
         echo DATAATUAL
         ?>

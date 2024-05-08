@@ -1,20 +1,20 @@
 <div class="card text-center">
-    <div class="card-header">
+    <div class="card-header  bg-dark text-white">
         <div class="d-flex justify-content-between align-items-center">
-            <p class="fs-3">#Aluno(s)</p>
+            <p class="fs-3" style="text-decoration-line: underline">#Alunos</p>
 
             <div class="d-flex float-end align-items-center">
-                <button class="btn btn-sm btn-secondary"
+                <button class="btn btn-md btnbonitoo botaoAddEvento"
                         onclick="abrirModalJsAluno('nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','cadAluno','A','btnCadAluno','addAluno','frmCadAluno')">
-                    Cadastrar
+                    Cadastrar Aluno
                 </button>
             </div>
         </div>
     </div>
     <div class="card-body">
-        <table class="table table-striped table-hover">
+        <table class="containers text-white">
             <thead>
-            <tr class="table-secondary">
+            <tr>
                 <th scope="col" width="5%">#</th>
                 <th scope="col" width="25%">Nome</th>
                 <th scope="col" width="20%">Email</th>
@@ -40,22 +40,22 @@
                     $nomeTurma = $alunoItem->nomeTurma;
 
                     ?>
-                    <tr class="table-secondary">
+                    <tr>
                         <th scope="row"><?php echo $cont ?></th>
                         <td><?php echo $nome . ' ' . $sobrenome; ?></td>
                         <td><?php echo $email ?></td>
                         <td><?php echo $nascimento ?></td>
                         <td><?php echo $celular ?></td>
                         <td>
-                            <button class="btn btn-success btn-sm"
+                            <button class="btn btn-success btn-md"
                                     onclick="abrirModalJsAluno('<?php echo $id ?>','idVermaisAluno','<?php echo $nome ?>','vermaisNomeAluno','<?php echo $sobrenome ?>','vermaisSobrenomeAluno','<?php echo $nomeTurma ?>','vermaisTurmaDoAluno','<?php echo $email ?>','vermaisEmailAluno','<?php echo $celular ?>','vermaisCelularAluno','<?php echo $cpf ?>','vermaisCpfAluno','<?php echo $nascimento ?>','vermaisNascimentoAluno','vermaisAluno','A','btnVermaisAluno','vermaisAluno','frmVermaisAluno')">
                                 Ver mais
                             </button>
-                            <button class="btn btn-primary btn-sm"
+                            <button class="btn btn-primary btn-md"
                                     onclick="abrirModalJsAluno('<?php echo $id ?>','idEditAluno','<?php echo $nome ?>','editNomeAluno','<?php echo $sobrenome ?>','editSobrenomeAluno','<?php echo $turma ?>','editTurmaDoAluno','<?php echo $email ?>','editEmailAluno','<?php echo $celular ?>','editCelularAluno','<?php echo $cpf ?>','editCpfAluno','<?php echo $nascimento ?>','editNascimentoAluno','editAluno','A','btnEditAluno','editAluno','frmEditAluno')">
                                 Alterar
                             </button>
-                            <button class="btn btn-danger btn-sm"
+                            <button class="btn btn-danger btn-md"
                                     onclick="abrirModalJsAluno('<?php echo $id ?>','idDeleteAluno','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','nao','deleteAluno','A','btnDeleteAluno','deleteAluno','frmDeleteAluno')">
                                 <span class="mdi mdi-trash-can"></span>
                             </button>
@@ -73,7 +73,8 @@
             </tbody>
         </table>
     </div>
-    <div class="card-footer text-body-secondary">
+    <div class="card-footer bg-dark text-white">
         <?php echo DATAATUAL ?>
     </div>
 </div>
+

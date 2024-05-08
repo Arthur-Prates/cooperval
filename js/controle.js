@@ -323,7 +323,7 @@ function abrirModalJsCurso(idId, inId, idNome, inNome, idLocal, inLocal, nomeMod
                     console.log(data)
 
                     if (data.success) {
-                            carregarConteudo('listarCurso')
+                        carregarConteudo('listarCurso')
                         setTimeout(function myFunction() {
                             if (`${addEditDel}` === 'addCurso' || `${addEditDel}` === 'deleteCurso') {
                                 alertSuccess(data.message, '#65B307')
@@ -581,11 +581,11 @@ function abrirModalJsTurma(idId, inId, idNumero, inNumero, idNome, inNome, idCod
                         carregarConteudo('listarTurma')
                         if (`${addEditDel}` === 'addTurma' || `${addEditDel}` === 'deleteTurma') {
                             alertSuccess(data.message, '#65B307')
-                            botoes.disabled = false;
                             document.getElementById(`${formulario}`).reset()
                         } else if (`${addEditDel}` === 'editTurma') {
                             alertSuccess(data.message, '#2b58de')
                         }
+                        botoes.disabled = false;
                     } else {
                         alertError(data.message)
                     }

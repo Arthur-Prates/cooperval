@@ -23,7 +23,7 @@ include_once("./bodyy.php");
 </head>
 
 <body>
-<div id="gradient"></div>
+
 <div class="login-box">
     <h2 class="fontee">LOGIN <span class="mdi mdi-login"></span></h2>
     <form method="post" name="frmLogin" id="frmLogin">
@@ -47,7 +47,7 @@ include_once("./bodyy.php");
         </div>
         <div class="erroBonito p-1 text-center" role="alert" id="alertlog" style="display: none;">
         </div>
-        <button style="background: transparent; border: transparent;" class="hoverrr" onclick="fazerLogin();"
+        <button style="background: transparent; border: transparent;" class="hoverrr text-white" onclick="fazerLogin();"
                 type="button">
             <span></span>
             <span></span>

@@ -60,7 +60,7 @@ if ($_SESSION['idadm']) {
                 }
                 ?>
             </ul>
-            <button type="button" name="logout" id="logout" class="btn btn-danger" onclick="redireciona('logout.php')">
+            <button type="button" name="logout" id="logout" class="btnlindo" onclick="redireciona('logout.php')">
                 Sair
             </button>
 
@@ -72,9 +72,10 @@ if ($_SESSION['idadm']) {
     <div class="row">
         <div class="col-lg-2 verdeCoop tamanhoBarraLateral fs-4">
             <div class="inputii" style="background-color: #048149">
-                <div class="mt-3 mb-2 value" onclick="window.location.reload()">Calendário</div>
+                <div class="mt-3 mb-2 value" onclick="window.location.reload()"><i
+                            class="fas fa-calendar-alt"></i> Calendário</div>
                 <div class="mt-3 mb-2 value" onclick="carregarConteudo('listarCalendario')"><i
-                            class="fas fa-calendar-alt"></i> Agendamento
+                            class="fas fa-book"></i> Agendamento
                 </div>
                 <div class="mt-3 mb-2 value" onclick="carregarConteudo('listarAluno')"><i
                             class='fas fa-user-graduate'></i> Alunos

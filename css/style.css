@@ -51,8 +51,6 @@ body {
 }
 
 .botaoAddEvento {
-    background-color: transparent !important;
-    border: #2c3e50 1px solid !important;
     color: black;
     transition: 0.2s;
 }
@@ -60,6 +58,11 @@ body {
 .botaoAddEvento:hover {
     background-color: #1E2B37 !important;
     color: white !important;
+}
+
+.btnbonitoo{
+    background-color: white !important;
+color: black !important;
 }
 
 
@@ -86,9 +89,9 @@ body {
     width: 400px;
     padding: 40px;
     transform: translate(-50%, -50%);
-    background: linear-gradient(black, #187F00);
+    background: linear-gradient(black, #048149);
     box-sizing: border-box;
-    box-shadow: 0 15px 50px #187F00;
+    box-shadow: 0 20px 50px #048149;
     border-radius: 10px;
 }
 
@@ -129,7 +132,7 @@ body {
 .login-box .user-box input:valid ~ label {
     top: -20px;
     left: 0;
-    color: #1fd40c;
+    color:#1D8D5B;
     font-size: 12px;
 }
 
@@ -137,7 +140,7 @@ body {
     position: relative;
     display: inline-block;
     padding: 10px 20px;
-    color: #19ff00;
+    color: #1D8D5B;
     font-size: 16px;
     text-decoration: none;
     text-transform: uppercase;
@@ -148,18 +151,19 @@ body {
 }
 
 .login-box button:hover {
-    background: #19ff00;
+    background: #1D8D5B;
     color: #fff;
     border-radius: 5px;
-    box-shadow: 0 0 5px #03ff00,
-    0 0 25px #19ff00,
-    0 0 50px #19ff00,
-    0 0 100px #19ff00;
+    box-shadow: 0 0 5px #1D8D5B,
+    0 0 25px #1D8D5B,
+    0 0 50px #1D8D5B,
+    0 0 100px #1D8D5B;
 }
 
 .login-box button span {
     position: absolute;
     display: block;
+
 }
 
 .login-box button span:nth-child(1) {
@@ -167,7 +171,7 @@ body {
     left: -100%;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #27cd14);
+    background: linear-gradient(90deg, transparent, black);
     animation: btn-anim1 1s linear infinite;
 }
 
@@ -185,7 +189,7 @@ body {
     right: 0;
     width: 2px;
     height: 100%;
-    background: linear-gradient(180deg, transparent, #27cd14);
+    background: linear-gradient(180deg, transparent, black);
     animation: btn-anim2 1s linear infinite;
     animation-delay: .25s
 }
@@ -204,7 +208,7 @@ body {
     right: -100%;
     width: 100%;
     height: 2px;
-    background: linear-gradient(270deg, transparent,#27cd14);
+    background: linear-gradient(270deg, transparent,black);
     animation: btn-anim3 1s linear infinite;
     animation-delay: .5s
 }
@@ -223,7 +227,7 @@ body {
     left: 0;
     width: 2px;
     height: 100%;
-    background: linear-gradient(360deg, transparent, #19ff00);
+    background: linear-gradient(360deg, transparent, black);
     animation: btn-anim4 1s linear infinite;
     animation-delay: .75s
 }
@@ -242,7 +246,7 @@ body {
 }
 
 .hoverrr:hover{
-    background: #19ff00 !important;
+    background: #1D8D5B !important;
 }
 
 .sem_hover:hover{
@@ -343,5 +347,155 @@ color:white;
     background: transparent !important;
     border: none !important;
     cursor:default !important;
+}
+
+.btnlindo {
+    width: 9em;
+    height: 3em;
+    border-radius: 30em;
+    font-size: 15px;
+    font-family: inherit;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btnlindo::before {
+    content: '';
+    width: 0;
+    height: 3em;
+    border-radius: 30em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to right, red 0%, darkred 100%);
+    transition: .5s ease;
+    display: block;
+    z-index: -1;
+}
+
+.btnlindo:hover::before {
+    width: 9em;
+}
+.btnlindo{
+    background-color: darkred;
+}
+
+/*
+	Table Responsive
+	===================
+	Author: https://github.com/pablorgarcia
+ */
+
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+
+.body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.42em;
+    color:#A7A1AE;
+    background-color:#1F2739;
+}
+
+.h1 {
+    font-size:3em;
+    font-weight: 300;
+    line-height:1em;
+    text-align: center;
+    color: #4DC3FA;
+}
+
+.h2 {
+    font-size:1em;
+    font-weight: 300;
+    text-align: center;
+    display: block;
+    line-height:1em;
+    padding-bottom: 2em;
+    color: #FB667A;
+}
+
+.h2 a {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #FB667A;
+    text-decoration: none;
+}
+
+.blue { color: #185875; }
+.yellow { color: #FFF842; }
+
+.containers th h1 {
+    font-weight: bold;
+    font-size: 1em;
+    text-align: left;
+    color: #1D8D5B;
+}
+
+.containers td {
+    font-weight: normal;
+    font-size: 1em;
+    -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+    -moz-box-shadow: 0 2px 2px -2px #0E1119;
+    box-shadow: 0 2px 2px -2px #0E1119;
+}
+
+.containers {
+    text-align: left;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+    display: table;
+    padding: 0 0 8em 0;
+}
+
+.containers td, .containers th {
+    padding-bottom: 2%;
+    padding-top: 2%;
+    padding-left:2%;
+}
+
+/* Background-color of the odd rows */
+.containers tr:nth-child(odd) {
+    background-color: #1D8D5B;
+}
+
+/* Background-color of the even rows */
+.containers tr:nth-child(even) {
+    background-color: #1A7E51;
+}
+
+.containers th {
+    background-color: #4AA37B   ;
+}
+
+.containers td:first-child { color: #FB667A; }
+
+.containers tr:hover {
+    background-color: #80BEA2;
+    -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+    -moz-box-shadow: 0 6px 6px -6px #0E1119;
+    box-shadow: 0 6px 6px -6px #0E1119;
+}
+
+.containers td:hover {
+    background-color: #A6D1BD;
+    color: black;
+    font-weight: bold;
+
+    box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+    transform: translate3d(6px, -6px, 0);
+
+    transition-delay: 0s;
+    transition-duration: 0.4s;
+    transition-property: all;
+    transition-timing-function: line;
+}
+
+@media (max-width: 800px) {
+    .containers td:nth-child(4),
+    .containers th:nth-child(4) { display: none; }
 }
 

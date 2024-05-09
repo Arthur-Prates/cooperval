@@ -191,11 +191,6 @@ if ($_SESSION['idadm']) {
                     }
                 });
             </script>
-            <?php
-            echo '<pre>';
-            print_r($array[0]);
-            echo '</pre>';
-            ?>
             <!-- Modal Add Evento-->
             <div class="modal fade" id="cadastrarEvento" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
@@ -1298,7 +1293,7 @@ if ($_SESSION['idadm']) {
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Modal 1</h1>
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">História da Cooperval</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

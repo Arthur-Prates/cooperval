@@ -126,7 +126,10 @@ if ($_SESSION['idadm']) {
                             if ($turmaCont !== false) {
                             foreach ($turmaCont as $item) {
                             $nome = $item->nomeTurma;
-                            $contarturmas = $contarturmas + 1
+                            $id = $item-> idturma;
+                            $array[] = $id;
+                            $contarturmas = $contarturmas + 1;
+
                             ?>
                             '<?php echo $nome?>',
                             <?php
@@ -150,9 +153,12 @@ if ($_SESSION['idadm']) {
                             data: [ <?php
                                 while ($while < $contarturmas){
 
+                                $idturmaWhile = $array[$while];
+
+                                $turma = listarTabelaTurmaGrafico($idturmaWhile);
+
                                 $while = $while + 1;
 
-                                $turma = listarTabelaTurmaGrafico($while);
                                 if ($turma !== false) {
                                 foreach ($turma as $item) {
                                 $soma = $item->soma;
@@ -185,6 +191,11 @@ if ($_SESSION['idadm']) {
                     }
                 });
             </script>
+            <?php
+            echo '<pre>';
+            print_r($array[0]);
+            echo '</pre>';
+            ?>
             <!-- Modal Add Evento-->
             <div class="modal fade" id="cadastrarEvento" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
@@ -1334,7 +1345,8 @@ if ($_SESSION['idadm']) {
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" data-bs-target="#ModalCooperval" data-bs-toggle="modal">Voltar para a história
+                <button class="btn btn-primary" data-bs-target="#ModalCooperval" data-bs-toggle="modal">Voltar para a
+                    história
                 </button>
             </div>
         </div>
